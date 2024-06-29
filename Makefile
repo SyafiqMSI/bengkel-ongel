@@ -30,6 +30,10 @@ setup:
 	else \
 		echo "Database 'bengkel_ongel' sudah ada. Melewati pembuatan database."; \
 	fi
+	@if [ -d "public/spare_parts" ]; then \
+		echo "Menyalin file gambar ke public/storage..."; \
+		cp -r public/spare_parts public/storage/spare_parts; \
+	fi
 
 run:
 	php artisan serve

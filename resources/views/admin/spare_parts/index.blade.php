@@ -35,8 +35,6 @@
                                         <td class="border px-4 py-2">
                                             @if ($sparePart->gambar)
                                                 <img src="{{ asset('storage/spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image" class="max-w-xs">
-                                            @elseif ($sparePart->gambar)
-                                                <img src="{{ asset('spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image" class="max-w-xs">
                                             @else
                                                 No image available
                                             @endif
