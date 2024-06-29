@@ -71,6 +71,5 @@ class SparePartsTableSeeder extends Seeder
             File::ensureDirectoryExists(public_path('storage/spare_parts'));
             File::copy($source, $destination);
         }
-        
     }
 }

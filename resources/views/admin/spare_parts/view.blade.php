@@ -16,14 +16,19 @@
                         <strong>Price:</strong> {{ $sparePart->harga }}<br>
                         <strong>Stock:</strong> {{ $sparePart->stock_spare_part }}<br>
                         <strong>Date Added:</strong> {{ $sparePart->tanggal_masuk }}<br>
-                        @if ($sparePart->gambar)
-                            <img src="{{ asset('storage/spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image" class="max-w-xs">
+                        @if ($sparePart->gambar && file_exists(public_path('storage/spare_parts/' . $sparePart->gambar)))
+                            <img src="{{ asset('storage/spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image"
+                                class="max-w-xs">
+                        @elseif ($sparePart->gambar && file_exists(public_path('spare_parts/' . $sparePart->gambar)))
+                            <img src="{{ asset('spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image"
+                                class="max-w-xs">
                         @else
-                            <div class="max-w-xs mb-4">No image available</div>
+                            No image available
                         @endif
                     </p>
                     <div class="flex justify-start">
-                        <a href="{{ route('admin.spare_parts.index') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                        <a href="{{ route('admin.spare_parts.index') }}" class="btn btn-black mb-2"
+                            style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
                     </div>
                 </div>
             </div>

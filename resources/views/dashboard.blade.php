@@ -37,19 +37,24 @@
                         <tbody>
                             @foreach ($spareParts as $sparePart)
                                 <tr>
-                                    <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->id_spare_part }}</td>
+                                    <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->id_spare_part }}
+                                    </td>
                                     <td class="border px-4 py-2">{{ $sparePart->nama_spare_part }}</td>
                                     <td class="border px-4 py-2">
-                                        @if ($sparePart->gambar)
+                                        @if ($sparePart->gambar && file_exists(public_path('storage/spare_parts/' . $sparePart->gambar)))
                                             <img src="{{ asset('storage/spare_parts/' . $sparePart->gambar) }}"
                                                 alt="Spare Part Image" class="max-w-xs">
+                                        @elseif ($sparePart->gambar && file_exists(public_path('spare_parts/' . $sparePart->gambar)))
+                                            <img src="{{ asset('spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image"
+                                                class="max-w-xs">
                                         @else
                                             No image available
                                         @endif
                                     </td>
                                     <td class="border px-4 py-2">{{ $sparePart->deskripsi }}</td>
                                     <td class="border px-4 py-2">{{ $sparePart->harga }}</td>
-                                    <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->stock_spare_part }}</td>
+                                    <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->stock_spare_part }}
+                                    </td>
                                     <td class="border px-4 py-2 text-center align-middle">
                                         @if ($sparePart->stock_spare_part > 0)
                                             <form action="{{ route('cart.store', $sparePart->id_spare_part) }}" method="POST">
