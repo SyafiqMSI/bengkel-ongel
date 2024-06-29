@@ -23,8 +23,17 @@ setup:
 		echo "vendor sudah ada. Melewati composer install."; \
 	fi
 	php artisan storage:link
+	@echo "Memeriksa database..."
+	@if ! mysql -u root -e 'use bengkel_ongel' -h 127.0.0.1 -P 3306; then \
+		echo "Database 'bengkel_ongel' tidak ditemukan. Membuat database..."; \
+		mysql -u root -e 'CREATE DATABASE bengkel_ongel' -h 127.0.0.1 -P 3306; \
+	else \
+		echo "Database 'bengkel_ongel' sudah ada. Melewati pembuatan database."; \
+	fi
 
 run:
-	php artisan migrate:fresh --seed
 	php artisan serve
 
+migrate:
+	php artisan optimize
+	php artisan migrate:fresh --seed
