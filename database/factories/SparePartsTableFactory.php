@@ -22,12 +22,12 @@ class SparePartsTableFactory extends Factory
     public function definition()
     {
         return [
-            'id_spare_part' => $this->faker->unique()->numberBetween(1000, 9999),
-            'nama_spare_part' => $this->faker->word,
-            'stock_spare_part' => $this->faker->numberBetween(10, 50),
-            'deskripsi' => $this->faker->word,
-            'harga' => $this->faker->numberBetween(10000, 500000),
-            'tanggal_masuk' => $this->faker->dateTimeThisYear,
+            'spare_part_id' => $this->faker->unique()->numberBetween(1000, 9999),
+            'name' => $this->faker->word,
+            'stock' => $this->faker->numberBetween(10, 50),
+            'description' => $this->faker->word,
+            'price' => $this->faker->numberBetween(10000, 500000),
+            'entry_date' => $this->faker->dateTimeThisYear,
         ];
     }
 }

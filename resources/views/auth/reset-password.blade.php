@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <h2 class="text-2xl font-bold mb-6 text-center">Forgout Your Account</h2>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 

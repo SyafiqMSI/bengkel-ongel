@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <form action="{{ route('admin.appointment.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.item_ordered.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-4">
                             <label for="id_items_ordered" class="block text-gray-700 text-sm font-bold mb-2">Items Ordered ID</label>
@@ -18,13 +18,22 @@
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
+
                         <div class="mb-4">
                             <label for="appointment_id" class="block text-gray-700 text-sm font-bold mb-2">Appointment ID</label>
-                            <input type="text" id="appointment_id" name="appointment_id" value="{{ old('appointment_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <select id="appointment_id" name="appointment_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="">Select Appointment ID</option>
+                                @foreach($appointments as $appointment)
+                                    <option value="{{ $appointment->appointment_id }}">
+                                        {{ $appointment->appointment_id }}
+                                    </option>
+                                @endforeach
+                            </select>
                             @error('appointment_id')
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
+
                         <div class="mb-4">
                             <label for="sparepart_id" class="block text-gray-700 text-sm font-bold mb-2">Spare Part ID</label>
                             <input type="text" id="sparepart_id" name="sparepart_id" value="{{ old('sparepart_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -34,12 +43,14 @@
                         </div>
                         <div class="mb-4">
                             <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount</label>
-                            <input type="text" id="amount" name="amount" value="{{ old('amount') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input type="number" id="amount" name="amount" value="{{ old('amount') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             @error('amount')
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
+                        <a href="{{ route('admin.item_ordered.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                        </div>
                     </form>
                 </div>
             </div>

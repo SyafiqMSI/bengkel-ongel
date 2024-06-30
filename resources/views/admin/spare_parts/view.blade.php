@@ -9,21 +9,44 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <h5 class="text-xl font-bold">{{ $sparePart->nama_spare_part }}</h5>
-                    <p>
-                        <strong>ID:</strong> {{ $sparePart->id_spare_part }}<br>
-                        <strong>Description:</strong> {{ $sparePart->deskripsi }}<br>
-                        <strong>Price:</strong> {{ $sparePart->harga }}<br>
-                        <strong>Stock:</strong> {{ $sparePart->stock_spare_part }}<br>
-                        <strong>Date Added:</strong> {{ $sparePart->tanggal_masuk }}<br>
-                        @if ($sparePart->gambar)
-                            <img src="{{ url('storage/public/spare_parts/') . $sparePart->gambar) }}" alt="Spare Part Image" class="max-w-xs">
-                        @else
-                            <div class="max-w-xs mb-4">No image available</div>
-                        @endif
-                    </p>
-                    <div class="flex justify-start">
-                        <a href="{{ route('admin.spare_parts.index') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                    <div class="flex justify-between items-center mb-6">
+                        <h1 class="text-2xl font-bold text-gray-800">{{ $sparePart->namme }}</h1>
+                        <a href="{{ route('admin.spare_parts.index') }}" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                            Back
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex flex-col">
+                            <span class="text-sm text-gray-600">ID:</span>
+                            <span class="text-lg font-semibold">{{ $sparePart->spare_part_id }}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm text-gray-600">Description:</span>
+                            <p class="text-lg">{{ $sparePart->description }}</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm text-gray-600">Price:</span>
+                            <span class="text-lg font-semibold">{{ $sparePart->price }}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm text-gray-600">Stock:</span>
+                            <span class="text-lg font-semibold">{{ $sparePart->stock }}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm text-gray-600">Date Added:</span>
+                            <span class="text-lg font-semibold">{{ $sparePart->entry_date }}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-sm text-gray-600">Image:</span>
+                            @if ($sparePart->picture)
+                                <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-full h-auto">
+                            @else
+                                <div class="max-w-xs mb-4 text-gray-500">No image available</div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

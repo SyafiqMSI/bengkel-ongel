@@ -19,30 +19,32 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.appointment.update', $appointment->id_appointment) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.appointment.update', $appointment->appointment_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="mb-4">
-                            <label for="id_appointment" class="block text-gray-700 text-sm font-bold mb-2">ID</label>
-                            <input type="text" id="id_appointment" name="id_appointment" value="{{ $appointment->id_appointment }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="appointment_id" class="block text-gray-700 text-sm font-bold mb-2">ID</label>
+                            <input type="text" id="appointment_id" name="appointment_id" value="{{ $appointment->appointment_id }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div class="mb-4">
+                            <label for="items_ordered_id" class="block text-gray-700 text-sm font-bold mb-2">Ordered ID</label>
+                            <input type="text" id="items_ordered_id" name="items_ordered_id" value="{{ $appointment->items_ordered_id }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
                             <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">User ID</label>
                             <input type="text" id="user_id" name="user_id" value="{{ $appointment->user_id }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
-                            <label for="ordered_id" class="block text-gray-700 text-sm font-bold mb-2">Ordered ID</label>
-                            <input type="text" id="ordered_id" name="ordered_id" value="{{ $appointment->ordered_id }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
-                        <div class="mb-4">
-                            <label for="day" class="block text-gray-700 text-sm font-bold mb-2">Day</label>
-                            <input type="date" id="day" name="day" value="{{ $appointment->day }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Day</label>
+                            <input type="date" id="date" name="date" value="{{ $appointment->date }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
                             <label for="status" class="block text-gray-700 text-sm font-bold mb-2">Status</label>
                             <input type="text" id="status" name="status" value="{{ $appointment->status }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
+                        <a href="{{ route('admin.appointment.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                        </div>
                     </form>
                 </div>
             </div>

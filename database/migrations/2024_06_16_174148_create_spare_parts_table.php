@@ -9,13 +9,13 @@ class CreateSparePartsTable extends Migration
     public function up()
     {
         Schema::create('spare_parts', function (Blueprint $table) {
-            $table->id('id_spare_part'); 
-            $table->string('nama_spare_part', 50);
-            $table->integer('stock_spare_part');
-            $table->date('tanggal_masuk')->nullable();
-            $table->text('deskripsi')->nullable();
-            $table->decimal('harga', 8, 2)->nullable();
-            $table->string('gambar')->nullable();
+            $table->id('spare_part_id'); 
+            $table->string('name', 50);
+            $table->integer('stock');
+            $table->date('entry_date')->nullable();
+            $table->text('description')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->string('picture')->nullable();
             $table->timestamps();
         });
     }

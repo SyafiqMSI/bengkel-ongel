@@ -9,20 +9,19 @@ class Appointment extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_appointment';
+    protected $primaryKey = 'appointment_id';
 
     protected $fillable = [
         'appointment_id',
-        'ordered_id',
+        'items_ordered_id',
         'user_id',
-        'day',
+        'date',
         'status',
     ];
 
-
     public function itemsOrdered()
     {
-        return $this->belongsTo(ItemsOrdered::class, 'ordered_id', 'id_ordered');
+        return $this->belongsTo(ItemsOrdered::class, 'items_ordered_id', 'items_ordered_id');
     }
 
     public function user()

@@ -17,6 +17,6 @@ class Order extends Model
 
     public function sparePart()
     {
-        return $this->belongsTo(SparePart::class, 'spare_part_id', 'id_spare_part');
+        return $this->belongsTo(SparePart::class, 'spare_part_id', 'spare_part_id');
     }
 }

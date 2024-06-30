@@ -9,11 +9,11 @@ class ItemsOrdered extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id_items_ordered';
+    protected $primaryKey = 'items_ordered_id';
     protected $table = 'items_ordereds';
 
     protected $fillable = [
-        'id_items_ordered',
+        'items_ordered_id',
         'appointment_id',
         'spare_part_id',
         'amount',
@@ -22,11 +22,17 @@ class ItemsOrdered extends Model
 
     public function sparePart()
     {
-        return $this->belongsTo(SparePart::class, 'spare_part_id', 'id_spare_part');
+        return $this->belongsTo(SparePart::class, 'spare_part_id', 'spare_part_id');
     }
 
     public function appointment()
     {
-        return $this->belongsTo(Appointment::class, 'id_appointment', 'appointment_id');
+        return $this->belongsTo(Appointment::class, 'appointment_id', 'appointment_id');
     }
 }
+
+
+
+
+
+

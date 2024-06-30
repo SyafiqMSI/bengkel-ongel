@@ -12,16 +12,16 @@ class SparePart extends Model
     protected $table = 'spare_parts';
 
     protected $fillable = [
-        'id_spare_part',
-        'nama_spare_part',
-        'gambar',
-        'deskripsi',
-        'harga',
-        'stock_spare_part',
-        'tanggal_masuk',
+        'spare_part_id',
+        'name',
+        'stock',
+        'entry_date',
+        'description',
+        'price',
+        'picture',
     ];
 
-    protected $primaryKey = 'id_spare_part';
+    protected $primaryKey = 'spare_part_id';
     public $incrementing = false;
     protected $keyType = 'int';
 }

@@ -8,23 +8,21 @@ return new class extends Migration
 {
     public function up()
     {
-        // Add foreign key to itemsordered table for appointment_id and sparepart_id
         Schema::table('items_ordereds', function (Blueprint $table) {
             $table->foreign('appointment_id')
-                  ->references('id_appointment')
+                  ->references('appointment_id')
                   ->on('appointments')
                   ->onDelete('cascade');
             
-            $table->foreign('sparepart_id')
-                  ->references('id_spare_part')  // assuming 'id' is the primary key of 'spare_parts' table
+            $table->foreign('spare_part_id')
+                  ->references('spare_part_id')
                   ->on('spare_parts')
                   ->onDelete('cascade');
         });
 
-        // Add foreign key to appointments table for ordered_id and user_id
         Schema::table('appointments', function (Blueprint $table) {
-            $table->foreign('ordered_id')
-                  ->references('id_items_ordered')
+            $table->foreign('items_ordered_id')
+                  ->references('items_ordered_id')
                   ->on('items_ordereds')
                   ->onDelete('cascade');
             
@@ -45,7 +43,7 @@ return new class extends Migration
 
         // Drop foreign keys from appointments table
         Schema::table('appointments', function (Blueprint $table) {
-            $table->dropForeign(['ordered_id']);
+            $table->dropForeign(['items_ordered_id']);
             $table->dropForeign(['user_id']);
         });
     }

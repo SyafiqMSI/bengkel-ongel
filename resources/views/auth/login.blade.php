@@ -1,6 +1,10 @@
 <x-guest-layout>
     <!-- Session Status -->
+    <img src="https://i.pinimg.com/originals/7d/10/ea/7d10ea497feb26b63d93a4f6467da98e.jpg"
+        alt="Welcome Image" class="w-full h-auto" >
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
+    <h2 class="text-2xl font-bold mb-6 text-center">Log in to Your Account</h2>
 
     <form method="POST" action="{{ route('login') }}">
         @csrf

@@ -12,7 +12,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('spare_part_id');
             $table->foreign('spare_part_id')
-                    ->references('id_spare_part')
+                    ->references('spare_part_id')
                     ->on('spare_parts')
                     ->onDelete('cascade');
             $table->integer('quantity');

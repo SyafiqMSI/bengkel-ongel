@@ -31,18 +31,18 @@
                             <tbody>
                                 @foreach ($appointments as $appointment)
                                     <tr>
-                                        <td class="border px-4 py-2">{{ $appointment->id_appointment }}</td>
-                                        <td class="border px-4 py-2">{{ $appointment->ordered_id }}</td>
+                                        <td class="border px-4 py-2">{{ $appointment->appointment_id }}</td>
+                                        <td class="border px-4 py-2">{{ $appointment->items_ordered_id }}</td>
                                         <td class="border px-4 py-2">{{ $appointment->user_id }}</td>
-                                        <td class="border px-4 py-2">{{ $appointment->day }}</td>
+                                        <td class="border px-4 py-2">{{ $appointment->date }}</td>
                                         <td class="border px-4 py-2">{{ $appointment->status }}</td>
                                         <td class="border px-4 py-2">
-                                            <a href="{{ route('admin.appointment.edit', $appointment->id_appointment) }}" class="btn btn-primary">Edit</a>
-                                            <a href="{{ route('admin.appointment.view', $appointment->id_appointment) }}" class="btn btn-info">View</a>
-                                            <form action="{{ route('admin.appointment.destroy', $appointment->id_appointment) }}" method="POST" style="display: inline-block;">
+                                        <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.edit', $appointment->appointment_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
+                                        <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
+                                            <form action="{{ route('admin.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</button>
+                                                <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
                                             </form>
                                         </td>
                                     </tr>

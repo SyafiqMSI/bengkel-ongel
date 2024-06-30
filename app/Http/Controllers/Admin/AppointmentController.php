@@ -31,11 +31,13 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
 
+        //belum selesai
+
         Appointment::create([
-            'id_appointment' => $request->id_appointment,
-            'ordered_id' => $request->ordered_id,
+            'appointment_id' => $request->appointment_id,
+            'items_ordered_id' => $request->items_ordered_id,
             'user_id' => $request->user_id,
-            'day' => $request->day,
+            'date' => $request->date,
             'status' => $request->status
         ]);
 

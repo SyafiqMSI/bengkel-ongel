@@ -19,26 +19,28 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('admin.item_ordered.update', $itemsOrder->id_items_ordered) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.item_ordered.update', $itemsOrder->items_ordered_id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div class="mb-4">
-                            <label for="id_items_ordered" class="block text-gray-700 text-sm font-bold mb-2">ID</label>
-                            <input type="text" id="id_items_ordered" name="id_items_ordered" value="{{ $itemsOrder->id_items_ordered }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="items_ordered_id" class="block text-gray-700 text-sm font-bold mb-2">ID</label>
+                            <input type="text" id="items_ordered_id" name="items_ordered_id" value="{{ $itemsOrder->items_ordered_id }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
                             <label for="appointment_id" class="block text-gray-700 text-sm font-bold mb-2">Appointment ID</label>
                             <input type="text" id="appointment_id" name="appointment_id" value="{{ $itemsOrder->appointment_id }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
-                            <label for="sparepart_id" class="block text-gray-700 text-sm font-bold mb-2">Sparepart ID</label>
-                            <input type="text" id="sparepart_id" name="sparepart_id" value="{{ $itemsOrder->sparepart_id }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="spare_part_id" class="block text-gray-700 text-sm font-bold mb-2">Sparepart ID</label>
+                            <input type="text" id="spare_part_id" name="spare_part_id" value="{{ $itemsOrder->spare_part_id }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
                             <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount</label>
-                            <input type="date" id="amount" name="amount" value="{{ $itemsOrder->amount }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input type="number" id="amount" name="amount" value="{{ $itemsOrder->amount }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
+                        <a href="{{ route('admin.item_ordered.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                        </div>
                     </form>
                 </div>
             </div>

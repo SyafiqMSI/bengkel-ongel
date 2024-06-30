@@ -13,6 +13,9 @@
                 @if (Auth::user()->usertype == 'admin')
                     <!-- Navigation Links Admin -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('welcome') : route('dashboard')">
+                            {{ __('Home') }}
+                        </x-nav-link>
                         <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>

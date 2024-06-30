@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\ItemsOrdered;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Appointment;
 
 class ItemsOrderedController extends Controller
 {
@@ -18,23 +18,22 @@ class ItemsOrderedController extends Controller
     public function view($id)
     {
         $itemsOrder = ItemsOrdered::findOrFail($id);
-        $username = User::findOrFail($itemsOrder->user_id)->name;
-        return view('admin.item_ordered.view', compact('itemsorder', 'username'));
-    }
+        return view('admin.item_ordered.view', compact('itemsOrder'));
+    }    
 
     public function create()
     {
-        $users = User::all();
-        return view('admin.item_ordered.create', compact('users'));
+        $appointments = Appointment::all();
+        return view('admin.item_ordered.create', compact('appointments'));
     }
 
     public function store(Request $request)
     {
 
         ItemsOrdered::create([
-            'id_items_ordered' => $request->id_items_ordered,
+            'items_ordered_id' => $request->id_items_ordered,
             'appointment_id' => $request->appointment_id,
-            'sparepart_id' => $request->sparepart_id,
+            'spare_part_id' => $request->sparepart_id,
             'amount' => $request->amount,
         ]);
 
@@ -45,7 +44,7 @@ class ItemsOrderedController extends Controller
     public function edit($id)
     {
         $itemsOrder = ItemsOrdered::findOrFail($id);
-        return view('admin.item_ordered.edit', compact('appointment'));
+        return view('admin.item_ordered.edit', compact('itemsOrder'));
     }
 
     public function update(Request $request, $id)

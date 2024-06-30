@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -17,51 +16,51 @@ class SparePartsTableSeeder extends Seeder
     {
         DB::table('spare_parts')->insert([
             [
-                'id_spare_part' => 1011,
-                'nama_spare_part' => 'Ban Motor',
-                'stock_spare_part' => 20,
-                'tanggal_masuk' => '2024-05-17',
-                'deskripsi' => 'Ban motor untuk berbagai jenis motor.', 
-                'harga' => 250000,
-                'gambar' => 'bengkel.png'
+                'spare_part_id' => 1011,
+                'name' => 'Ban Motor',
+                'stock' => 20,
+                'entry_date' => '2024-05-17',
+                'description' => 'Ban motor untuk berbagai jenis motor.', 
+                'price' => 250000,
+                'picture' => 'bengkel.png'
             ],
             [
-                'id_spare_part' => 1012,
-                'nama_spare_part' => 'Rantai Motor',
-                'stock_spare_part' => 15,
-                'tanggal_masuk' => '2024-05-17',
-                'deskripsi' => 'Rantai motor tahan lama dan kuat.', 
-                'harga' => 300000,
-                'gambar' => 'bengkel.png'
+                'spare_part_id' => 1012,
+                'name' => 'Rantai Motor',
+                'stock' => 15,
+                'entry_date' => '2024-05-17',
+                'description' => 'Rantai motor tahan lama dan kuat.', 
+                'price' => 300000,
+                'picture' => 'bengkel.png'
             ],
             [
-                'id_spare_part' => 1013,
-                'nama_spare_part' => 'Busi',
-                'stock_spare_part' => 30,
-                'tanggal_masuk' => '2024-05-17',
-                'deskripsi' => 'Busi untuk mesin motor yang awet.', 
-                'harga' => 50000,
-                'gambar' => 'bengkel.png'
+                'spare_part_id' => 1013,
+                'name' => 'Busi',
+                'stock' => 30,
+                'entry_date' => '2024-05-17',
+                'description' => 'Busi untuk mesin motor yang awet.', 
+                'price' => 50000,
+                'picture' => 'bengkel.png'
             ],
             [
-                'id_spare_part' => 1014,
-                'nama_spare_part' => 'Kampas Rem',
-                'stock_spare_part' => 25,
-                'tanggal_masuk' => '2024-05-17',
-                'deskripsi' => 'Kampas rem berkualitas tinggi.', 
-                'harga' => 150000,
-                'gambar' => 'bengkel.png'
+                'spare_part_id' => 1014,
+                'name' => 'Kampas Rem',
+                'stock' => 25,
+                'entry_date' => '2024-05-17',
+                'description' => 'Kampas rem berkualitas tinggi.', 
+                'price' => 150000,
+                'picture' => 'bengkel.png'
             ],
         ]);
 
         // Update data
         DB::table('spare_parts')
-            ->where('id_spare_part', 1011)
-            ->update(['stock_spare_part' => 25]);
+            ->where('spare_part_id', 1011)
+            ->update(['stock' => 25]);
 
         // Delete data
         DB::table('spare_parts')
-            ->where('id_spare_part', 1014)
+            ->where('spare_part_id', 1014)
             ->delete();
 
         $source = public_path('spare_parts/bengkel.png');

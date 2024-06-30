@@ -29,29 +29,29 @@ class SparePartController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'id_spare_part' => 'required|integer|unique:spare_parts',
-            'nama_spare_part' => 'required|string|max:50',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-            'deskripsi' => 'nullable|string',
-            'harga' => 'nullable|numeric',
-            'stock_spare_part' => 'required|integer',
-            'tanggal_masuk' => 'required|date',
+            'spare_part_id' => 'required|integer|unique:spare_parts',
+            'name' => 'required|string|max:50',
+            'stock' => 'required|integer',
+            'entry_date' => 'required|date',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
         $imageName = null;
-        if ($request->hasFile('gambar')) {
-            $imageName = time() . '_' . $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->storeAs('public/spare_parts', $imageName);
+        if ($request->hasFile('picture')) {
+            $imageName = time() . '_' . $request->file('picture')->getClientOriginalName();
+            $request->file('picture')->storeAs('public/spare_parts', $imageName);
         }
 
         SparePart::create([
-            'id_spare_part' => $request->id_spare_part,
-            'nama_spare_part' => $request->nama_spare_part,
-            'gambar' => $imageName,
-            'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
-            'stock_spare_part' => $request->stock_spare_part,
-            'tanggal_masuk' => $request->tanggal_masuk,
+            'spare_part_id' => $request->spare_part_id,
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'entry_date' => $request->entry_date,
+            'description' => $request->description,
+            'price' => $request->price,
+            'picture' => $imageName,
         ]);
 
         return redirect()->route('admin.spare_parts.index')
@@ -69,30 +69,30 @@ class SparePartController extends Controller
         $sparePart = SparePart::findOrFail($id);
 
         $request->validate([
-            'id_spare_part' => 'required|integer|unique:spare_parts,id_spare_part,' . $sparePart->id_spare_part . ',id_spare_part',
-            'nama_spare_part' => 'required|string|max:50',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'deskripsi' => 'nullable|string',
-            'harga' => 'nullable|numeric',
-            'stock_spare_part' => 'required|integer',
-            'tanggal_masuk' => 'required|date',
+            'spare_part_id' => 'required|integer|unique:spare_parts,spare_part_id,' . $sparePart->spare_part_id . ',spare_part_id',
+            'name' => 'required|string|max:50',
+            'stock' => 'required|integer',
+            'entry_date' => 'required|date',
+            'description' => 'nullable|string',
+            'price' => 'nullable|numeric',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($request->hasFile('gambar')) {
-            $imageName = time() . '_' . $request->file('gambar')->getClientOriginalName();
-            $request->file('gambar')->storeAs('public/spare_parts', $imageName);
-            if ($sparePart->gambar && file_exists(storage_path("app/public/spare_parts/{$sparePart->gambar}"))) {
-                unlink(storage_path("app/public/spare_parts/{$sparePart->gambar}"));
+        if ($request->hasFile('picture')) {
+            $imageName = time() . '_' . $request->file('picture')->getClientOriginalName();
+            $request->file('picture')->storeAs('public/spare_parts', $imageName);
+            if ($sparePart->picture && file_exists(storage_path("app/public/spare_parts/{$sparePart->picture}"))) {
+                unlink(storage_path("app/public/spare_parts/{$sparePart->picture}"));
             }
-            $sparePart->gambar = $imageName;
+            $sparePart->picture = $imageName;
         }
 
-        $sparePart->id_spare_part = $request->id_spare_part;
-        $sparePart->nama_spare_part = $request->nama_spare_part;
-        $sparePart->deskripsi = $request->deskripsi;
-        $sparePart->harga = $request->harga;
-        $sparePart->stock_spare_part = $request->stock_spare_part;
-        $sparePart->tanggal_masuk = $request->tanggal_masuk;
+        $sparePart->spare_part_id = $request->spare_part_id;
+        $sparePart->name = $request->name;
+        $sparePart->description = $request->description;
+        $sparePart->price = $request->price;
+        $sparePart->stock = $request->stock;
+        $sparePart->entry_date = $request->entry_date;
         $sparePart->save();
 
         return redirect()->route('admin.spare_parts.index')
@@ -103,8 +103,8 @@ class SparePartController extends Controller
     {
         $sparePart = SparePart::findOrFail($id);
 
-        if ($sparePart->gambar && file_exists(storage_path("app/public/spare_parts/{$sparePart->gambar}"))) {
-            unlink(storage_path("app/public/spare_parts/{$sparePart->gambar}"));
+        if ($sparePart->picture && file_exists(storage_path("app/public/spare_parts/{$sparePart->picture}"))) {
+            unlink(storage_path("app/public/spare_parts/{$sparePart->picture}"));
         }
 
         $sparePart->delete();
@@ -112,4 +112,5 @@ class SparePartController extends Controller
         return redirect()->route('admin.spare_parts.index')
             ->with('success', 'Spare Part deleted successfully.');
     }
+    
 }
