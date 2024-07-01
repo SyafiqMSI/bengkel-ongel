@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        SparePartsTableFactory::new()->count(3)->create();
+        // SparePartsTableFactory::new()->count(3)->create();
         $this->call(SparePartsTableSeeder::class);
 
         User::factory()->create([

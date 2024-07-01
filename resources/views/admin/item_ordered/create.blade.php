@@ -13,7 +13,7 @@
                         @csrf
                         <div class="mb-4">
                             <label for="id_items_ordered" class="block text-gray-700 text-sm font-bold mb-2">Items Ordered ID</label>
-                            <input type="text" id="id_items_ordered" name="id_items_ordered" value="{{ old('id_items_ordered') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <input type="number" id="id_items_ordered" name="id_items_ordered" value="{{ old('id_items_ordered') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             @error('id_items_ordered')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
@@ -35,9 +35,16 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="sparepart_id" class="block text-gray-700 text-sm font-bold mb-2">Spare Part ID</label>
-                            <input type="text" id="sparepart_id" name="sparepart_id" value="{{ old('sparepart_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            @error('sparepart_id')
+                            <label for="id_items_ordered" class="block text-gray-700 text-sm font-bold mb-2">Spare Part Ordered</label>
+                            <select id="id_items_ordered" name="id_items_ordered" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="">Select Spare Parts</option>
+                                @foreach($spareParts as $sparePart)
+                                <option value="{{ $sparePart->spare_part_id }}">
+                                    {{ $sparePart->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('id_items_ordered')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>

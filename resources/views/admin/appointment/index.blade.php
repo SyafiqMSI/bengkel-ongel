@@ -39,6 +39,7 @@
                                     <td class="border px-4 py-2">{{ $appointment->date }}</td>
                                     <td class="border px-4 py-2">{{ $appointment->status }}</td>
                                     <td class="border px-4 py-2">
+                                    <div class="flex items-center justify-center">
                                         <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.edit', $appointment->appointment_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
                                         <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
                                         <form action="{{ route('admin.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
@@ -49,8 +50,9 @@
                                         <form action="{{ route('admin.appointment.done', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
                                         @csrf
                                         @method('PATCH')
-                                            <x-primary-button style="background-color: rgb((0, 239, 0)); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-info">Done</a></x-primary-button>
+                                            <x-primary-button style="background-color: rgb(116, 253, 162); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-info">Done</a></x-primary-button>
                                         </form>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

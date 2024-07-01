@@ -42,10 +42,16 @@ class ItemsOrderedController extends Controller
         return view('admin.item_ordered.selectUser', compact('users'));
     }
 
+    public function spareparts() {
+        $spareParts = SparePart::all();
+        return view('admin.item_ordered.spareparts', compact('spareParts'));
+    }
+
     public function create($id)
     {
         $appointments = Appointment::where('user_id', $id)->get();
-        return view('admin.item_ordered.create', compact('appointments', 'id'));
+        $spareParts = SparePart::all(); 
+        return view('admin.item_ordered.create', compact('appointments', 'spareParts', 'id'));
     }
 
     public function store(Request $request)

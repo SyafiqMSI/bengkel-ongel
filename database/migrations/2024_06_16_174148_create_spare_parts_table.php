@@ -10,7 +10,7 @@ class CreateSparePartsTable extends Migration
     {
         Schema::create('spare_parts', function (Blueprint $table) {
             $table->id('spare_part_id'); 
-            $table->string('name', 50);
+            $table->string('name', 150);
             $table->integer('stock');
             $table->date('entry_date')->nullable();
             $table->text('description')->nullable();

@@ -183,7 +183,7 @@
             </nav>
         </header>
 
-        <div style="position: relative; display: flex; height: 80vh; margin: 2vh 0;">
+        <div style="position: relative; display: flex; height: 80vh; margin: 8vh 0;">
             <div style="background-image: url('https://i.pinimg.com/originals/7d/10/ea/7d10ea497feb26b63d93a4f6467da98e.jpg'); background-size: cover; background-position: center; flex: 1;">
             </div>
             <div style="display: flex; flex-direction: column; text-align: left; padding: 30px 35px; width: 400px;">
@@ -191,8 +191,7 @@
                 <p style="font-size: 1.2rem; line-height: 1.6; max-width: 600px; margin-bottom: 20px;">Your trusted
                     partner for automotive repairs and services.</p>
                 <div class="actions" style="display: flex; gap: 20px; margin-top: 20px;">
-                    <a href="#spareparts" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Our
-                        Services</a>
+                    <a href="#spareparts" onclick="smoothScroll(event)" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Our Product</a>
                     <a href="https://github.com/SyafiqMSI/bengkel-ongel/" target="_blank" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Contact
                         Us</a>
                 </div>
@@ -221,14 +220,13 @@
         <div class="container">
             <div class="row mb-0 h6">
                 <div class="col">
-                    <p>Muhammad Syafiq Ibrahim L0122116/C</p>
+                    <p>Kelompok 11</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Function to filter cards based on input
         function filterCards() {
             var input, filter, spareParts, cards, card, title, i, txtValue;
             input = document.getElementById('searchInput');
@@ -246,6 +244,21 @@
                 }
             }
         }
+
+        function smoothScroll(event) {
+        event.preventDefault();
+        const targetId = event.target.getAttribute('href').substring(1); 
+        const targetElement = document.getElementById(targetId);
+        const navbarHeight = document.querySelector('.header').offsetHeight; 
+        
+        if (targetElement) {
+            const targetPosition = targetElement.offsetTop - navbarHeight; 
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+        }
+    }
     </script>
 </body>
 

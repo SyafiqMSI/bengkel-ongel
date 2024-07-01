@@ -61,6 +61,7 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::delete('/admin/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('admin.appointment.destroy');
 
     Route::get('/admin/item_ordered', [ItemsOrderedController::class, 'index'])->name('admin.item_ordered.index');
+    Route::get('/admin/item_ordered/spareparts', [ItemsOrderedController::class, 'spareparts'])->name('admin.item_ordered.spareparts');
     Route::get('/admin/item_ordered/{appointmentId}/appointment', [ItemsOrderedController::class, 'indexAppointment'])->name('admin.item_ordered.indexappointment');
     Route::get('/admin/item_ordered/select', [ItemsOrderedController::class, 'selectUser'])->name('admin.item_ordered.selectuser');
     Route::get('/admin/item_ordered/create/{id}', [ItemsOrderedController::class, 'create'])->name('admin.item_ordered.create');
