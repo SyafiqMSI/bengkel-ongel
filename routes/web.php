@@ -38,10 +38,10 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::get('/client/appointment/{id}/edit', [AppointmentControllerUser::class, 'edit'])->name('client.appointment.edit');
     Route::patch('/client/appointment/update', [AppointmentControllerUser::class, 'update'])->name('client.appointment.update');
     Route::delete('/client/appointment/{appointments}', [AppointmentControllerUser::class, 'destroy'])->name('client.appointment.destroy');
+
 });
 
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {
-    Route::get('/sparepart/{id}', [SparePartController::class, 'details'])->name('sparepart.details');
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/spare_parts', [SparePartController::class, 'index'])->name('admin.spare_parts.index');
@@ -58,7 +58,7 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::get('/admin/appointment/{id}/view', [AppointmentController::class, 'view'])->name('admin.appointment.view');
     Route::get('/admin/appointment/{id}/edit', [AppointmentController::class, 'edit'])->name('admin.appointment.edit');
     Route::patch('/admin/appointment/update/{id}', [AppointmentController::class, 'update'])->name('admin.appointment.update');
-    Route::patch('/admin/appointment/{id}', [AppointmentController::class, 'done'])->name('admin.appointment.done');
+    Route::patch('/admin/appointment/{id}/done', [AppointmentController::class, 'done'])->name('admin.appointment.done');
     Route::delete('/admin/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('admin.appointment.destroy');
 
     Route::get('/admin/item_ordered', [ItemsOrderedController::class, 'index'])->name('admin.item_ordered.index');
@@ -71,4 +71,5 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::get('/admin/item_ordered/{id}/edit', [ItemsOrderedController::class, 'edit'])->name('admin.item_ordered.edit');
     Route::patch('/admin/item_ordered/{id}', [ItemsOrderedController::class, 'update'])->name('admin.item_ordered.update');
     Route::delete('/admin/item_ordered/{itemsorder}', [ItemsOrderedController::class, 'destroy'])->name('admin.item_ordered.destroy');
+
 });

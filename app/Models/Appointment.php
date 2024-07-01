@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     use HasFactory;
+    public function itemsOrdered()
+    {
+        return $this->hasMany(itemsOrdered::class);
+    }
 
     protected $primaryKey = 'appointment_id';
 

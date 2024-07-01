@@ -13,8 +13,15 @@
                         <h2 class="text-2xl mb-4">Your Cart</h2>
                         <div class="mt-10 mb-10 text-2xl">
                             <a href="{{ route('client.appointment.create') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Make Appointment</a>
+                           
                         </div>
                     </div>
+                    @if (session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    @endif
                     <table class="table-auto w-full">
                         <thead>
                             <tr class="bg-gray-100">
@@ -28,12 +35,12 @@
                             @foreach ($carts as $cart)
                             <tr>
                                 <td class="border px-4 py-2 text-center align-middle">
-                                    <a href="{{  route('sparepart.details', $cart->sparePart->spare_part_id)  }}">
+                                    <a href="{{ route('sparepart.details', $cart->sparePart->spare_part_id) }}">
                                         {{ $cart->sparePart->name }}
                                     </a>
                                 </td>
                                 <td class="border px-4 py-2 text-center align-middle">{{ $cart->quantity }}</td>
-                                <td class="border px-4 py-2 text-center align-middle">{{ $cart->sparePart->price * $cart->quantity  }}</td>
+                                <td class="border px-4 py-2 text-center align-middle">{{ $cart->sparePart->price * $cart->quantity }}</td>
                                 <td class="border px-4 py-2">
                                     <div class="flex justify-center space-x-1">
                                         <form action="{{ route('cart.update', $cart->cart_id) }}" method="POST" class="inline-block">

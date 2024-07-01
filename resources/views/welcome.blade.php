@@ -176,7 +176,7 @@
                     <a href="{{ route('admin.dashboard') }}" class="btn-dashboard">Dashboard</a>
                     @else
                     <a href="{{ route('profile.edit') }}" class="btn-profile">Profile</a>
-                    <a href="#" class="btn-cart">Cart</a>
+                    <a href="{{ route('cart.index') }}" class="btn-cart">Cart</a>
                     @endif
                     @endguest
                 </div>

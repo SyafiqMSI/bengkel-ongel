@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\ItemsOrdered;
+use App\Models\Order;
 use App\Models\User;
 
 class AppointmentController extends Controller
@@ -55,9 +58,7 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
 
-        //belum selesai
-
-        // Update the appointment with new data
+  
         $appointment->update($request->all());
 
         return redirect()->route('admin.appointment.index')
@@ -75,7 +76,18 @@ class AppointmentController extends Controller
         // Save the updated appointment
         $appointment->save();
     
-        return redirect()->route('admin.appointment.index')
+        // Create orders for items in the appointment
+        $orderedItems = ItemsOrdered::where('appointment_id', $appointment->appointment_id)->get();
+    
+        foreach ($orderedItems as $orderedItem) {
+            $order = new Order();
+            $order->spare_part_id = $orderedItem->spare_part_id;
+            $order->quantity = $orderedItem->amount; // Adjust as per your item structure
+            $order->amount = $orderedItem->sparePart->price * $orderedItem->amount; // Adjust as per your item structure
+            $order->save();
+        }
+    
+        return redirect()->route('client.appointment.index')
             ->with('success', 'Appointment updated successfully.');
     }
 

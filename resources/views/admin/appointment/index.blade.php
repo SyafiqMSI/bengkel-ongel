@@ -27,6 +27,7 @@
                                     <th class="border px-4 py-2">Day</th>
                                     <th class="border px-4 py-2">Status</th>
                                     <th class="border px-4 py-2">Action</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 @foreach ($appointments as $appointment)
@@ -39,19 +40,23 @@
                                     <td class="border px-4 py-2">{{ $appointment->date }}</td>
                                     <td class="border px-4 py-2">{{ $appointment->status }}</td>
                                     <td class="border px-4 py-2">
-                                    <div class="flex items-center justify-center">
-                                        <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.edit', $appointment->appointment_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
-                                        <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
-                                        <form action="{{ route('admin.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
-                                        </form>
-                                        <form action="{{ route('admin.appointment.done', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
-                                        @csrf
-                                        @method('PATCH')
-                                            <x-primary-button style="background-color: rgb(116, 253, 162); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-info">Done</a></x-primary-button>
-                                        </form>
+                                        <div class="flex items-center justify-center">
+                                            @if ($appointment->status != 'done')
+                                            <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.edit', $appointment->appointment_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
+                                            <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
+                                            <form action="{{ route('admin.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this appointment?')">Delete</a></x-primary-button>
+                                            </form>
+                                            <form action="{{ route('admin.appointment.done', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('PATCH')
+                                                <x-primary-button style="background-color: rgb(116, 253, 162); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-info">Done</a></x-primary-button>
+                                            </form>
+                                            @else
+                                            <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

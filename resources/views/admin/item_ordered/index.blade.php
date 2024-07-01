@@ -36,21 +36,23 @@
                                     <td class="border px-4 py-2 text-center align-middle">{{ $itemsOrder->spare_part_id }}</td>
                                     <td class="border px-4 py-2 text-center align-middle">{{ $itemsOrder->amount }}</td>
                                     <td class="border px-4 py-2 align-middle">
-                                        <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.item_ordered.edit', $itemsOrder->items_ordered_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
-                                        <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.item_ordered.view', $itemsOrder->items_ordered_id) }}" class="btn btn-info">View</a></x-primary-button>
-                                        <form action="{{ route('admin.item_ordered.destroy', $itemsOrder->items_ordered_id) }}" method="POST" style="display: inline-block;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
-                                        </form>
+                                        <div class="flex items-center justify-center">
+                                            <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.item_ordered.edit', $itemsOrder->items_ordered_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
+                                            <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.item_ordered.view', $itemsOrder->items_ordered_id) }}" class="btn btn-info">View</a></x-primary-button>
+                                            <form action="{{ route('admin.item_ordered.destroy', $itemsOrder->items_ordered_id) }}" method="POST" style="display: inline-block;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
+                                            </form>
                                     </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>
