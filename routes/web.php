@@ -50,7 +50,9 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::delete('/admin/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('admin.appointment.destroy');
 
     Route::get('/admin/item_ordered', [ItemsOrderedController::class, 'index'])->name('admin.item_ordered.index');
-    Route::get('/admin/item_ordered/create', [ItemsOrderedController::class, 'create'])->name('admin.item_ordered.create');
+    Route::get('/admin/item_ordered/{appointmentId}/appointment', [ItemsOrderedController::class, 'indexAppointment'])->name('admin.item_ordered.indexappointment');
+    Route::get('/admin/item_ordered/select', [ItemsOrderedController::class, 'selectUser'])->name('admin.item_ordered.selectuser');
+    Route::get('/admin/item_ordered/create/{id}', [ItemsOrderedController::class, 'create'])->name('admin.item_ordered.create');
     Route::post('/admin/item_ordered', [ItemsOrderedController::class, 'store'])->name('admin.item_ordered.store');
     Route::get('/admin/item_ordered/{id}/view', [ItemsOrderedController::class, 'view'])->name('admin.item_ordered.view');
     Route::get('/admin/item_ordered/{id}/edit', [ItemsOrderedController::class, 'edit'])->name('admin.item_ordered.edit');

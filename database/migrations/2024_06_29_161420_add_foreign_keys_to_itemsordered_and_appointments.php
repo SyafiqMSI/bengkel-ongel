@@ -13,7 +13,7 @@ return new class extends Migration
                   ->references('appointment_id')
                   ->on('appointments')
                   ->onDelete('cascade');
-            
+
             $table->foreign('spare_part_id')
                   ->references('spare_part_id')
                   ->on('spare_parts')
@@ -21,11 +21,6 @@ return new class extends Migration
         });
 
         Schema::table('appointments', function (Blueprint $table) {
-            $table->foreign('items_ordered_id')
-                  ->references('items_ordered_id')
-                  ->on('items_ordereds')
-                  ->onDelete('cascade');
-            
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
@@ -43,7 +38,6 @@ return new class extends Migration
 
         // Drop foreign keys from appointments table
         Schema::table('appointments', function (Blueprint $table) {
-            $table->dropForeign(['items_ordered_id']);
             $table->dropForeign(['user_id']);
         });
     }

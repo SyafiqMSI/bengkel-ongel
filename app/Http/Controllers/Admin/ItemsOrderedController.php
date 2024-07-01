@@ -6,6 +6,8 @@ use App\Models\ItemsOrdered;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\SparePart;
+use App\Models\User;
 
 class ItemsOrderedController extends Controller
 {
@@ -15,16 +17,35 @@ class ItemsOrderedController extends Controller
         return view('admin.item_ordered.index', compact('itemsorder'));
     }
 
+    public function indexAppointment($appointmentId)
+    {
+        if (!is_null($appointmentId)) {
+            $itemsorder = ItemsOrdered::where('appointment_id', $appointmentId)->get();
+        } else {
+            $itemsorder = ItemsOrdered::all();
+        }
+
+        return view('admin.item_ordered.index', compact('itemsorder'));
+    }
+
     public function view($id)
     {
         $itemsOrder = ItemsOrdered::findOrFail($id);
-        return view('admin.item_ordered.view', compact('itemsOrder'));
-    }    
+        $appointment = Appointment::findOrFail($itemsOrder->appointment_id);
+        $user = User::findOrFail($appointment->user_id);
+        $sparePart = SparePart::findOrFail($itemsOrder->spare_part_id);
+        return view('admin.item_ordered.view', compact('itemsOrder', 'user', 'sparePart'));
+    }
 
-    public function create()
+    public function selectUser() {
+        $users = User::all();
+        return view('admin.item_ordered.selectUser', compact('users'));
+    }
+
+    public function create($id)
     {
-        $appointments = Appointment::all();
-        return view('admin.item_ordered.create', compact('appointments'));
+        $appointments = Appointment::where('user_id', $id)->get();
+        return view('admin.item_ordered.create', compact('appointments', 'id'));
     }
 
     public function store(Request $request)

@@ -35,7 +35,6 @@ class AppointmentController extends Controller
 
         Appointment::create([
             'appointment_id' => $request->appointment_id,
-            'items_ordered_id' => $request->items_ordered_id,
             'user_id' => $request->user_id,
             'date' => $request->date,
             'status' => $request->status

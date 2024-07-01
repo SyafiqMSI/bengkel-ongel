@@ -18,11 +18,11 @@
                     </div>
 
                     <div class="mb-18">
-                        <table class="table-auto w-full mb-6 mt-6"> 
+                        <table class="table-auto w-full mb-6 mt-6">
                             <thead>
                                 <tr class="bg-gray-100">
                                     <th class="border px-4 py-2">ID</th>
-                                    <th class="border px-4 py-2">ID Item Order</th>
+                                    <th class="border px-4 py-2">Items Ordered</th>
                                     <th class="border px-4 py-2">ID User</th>
                                     <th class="border px-4 py-2">Day</th>
                                     <th class="border px-4 py-2">Status</th>
@@ -32,7 +32,9 @@
                                 @foreach ($appointments as $appointment)
                                     <tr>
                                         <td class="border px-4 py-2">{{ $appointment->appointment_id }}</td>
-                                        <td class="border px-4 py-2">{{ $appointment->items_ordered_id }}</td>
+                                        <td class="border px-4 py-2">
+                                            <a href="{{ route('admin.item_ordered.indexappointment', $appointment->appointment_id) }}">View Ordered Items</a>
+                                        </td>
                                         <td class="border px-4 py-2">{{ $appointment->user_id }}</td>
                                         <td class="border px-4 py-2">{{ $appointment->date }}</td>
                                         <td class="border px-4 py-2">{{ $appointment->status }}</td>

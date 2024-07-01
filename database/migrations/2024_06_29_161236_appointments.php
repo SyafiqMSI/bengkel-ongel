@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id('appointment_id');
-            $table->unsignedBigInteger('items_ordered_id');
             $table->unsignedBigInteger('user_id');
             $table->date('date');
             $table->string('status');

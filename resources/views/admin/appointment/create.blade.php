@@ -19,13 +19,6 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="items_ordered_id" class="block text-gray-700 text-sm font-bold mb-2">Ordered ID</label>
-                            <input type="text" id="items_ordered_id" name="items_ordered_id" value="{{ old('items_ordered_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            @error('items_ordered_id')
-                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="mb-4">
                             <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">User ID</label>
                             <select id="user_id" name="user_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="">Select a user</option>
@@ -54,8 +47,8 @@
                                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
-                        <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
                         <a href="{{ route('admin.appointment.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                        <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
                         </div>
                     </form>
                 </div>
