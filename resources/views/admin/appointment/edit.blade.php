@@ -10,13 +10,13 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
                     <form action="{{ route('admin.appointment.update', $appointment->appointment_id) }}" method="POST" enctype="multipart/form-data">
@@ -40,10 +40,10 @@
                         </div>
                         <a href="{{ route('admin.appointment.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
                         <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
-                        </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>

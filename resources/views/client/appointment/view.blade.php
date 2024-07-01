@@ -39,8 +39,8 @@
                             <span class="text-sm text-gray-600">Status:</span>
                             <span class="text-lg font-semibold">{{ $appointment->status }}</span>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>

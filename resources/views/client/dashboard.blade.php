@@ -18,9 +18,9 @@
                         Spare Parts
                     </div>
                     @if (session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
+                    <div class="alert alert-success">{{ session('success') }}</div>
                     @elseif (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>
+                    <div class="alert alert-danger">{{ session('error') }}</div>
                     @endif
                     <table class="table-auto w-full">
                         <thead>
@@ -36,31 +36,30 @@
                         </thead>
                         <tbody>
                             @foreach ($spareParts as $sparePart)
-                                <tr>
-                                    <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->id_spare_part }}</td>
-                                    <td class="border px-4 py-2">{{ $sparePart->nama_spare_part }}</td>
-                                    <td class="border px-4 py-2">
-                                        @if ($sparePart->gambar)
-                                            <img src="{{ asset('storage/spare_parts/' . $sparePart->gambar) }}"
-                                                alt="Spare Part Image" class="max-w-xs">
-                                        @else
-                                            No image available
-                                        @endif
-                                    </td>
-                                    <td class="border px-4 py-2">{{ $sparePart->deskripsi }}</td>
-                                    <td class="border px-4 py-2">{{ $sparePart->harga }}</td>
-                                    <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->stock_spare_part }}</td>
-                                    <td class="border px-4 py-2 text-center align-middle">
-                                        @if ($sparePart->stock_spare_part > 0)
-                                            <form action="{{ route('cart.store', $sparePart->id_spare_part) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="btn btn-primary">Buy</button>
-                                            </form>
-                                        @else
-                                            <button class="btn btn-primary" disabled>No Stock</button>
-                                        @endif
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->id_spare_part }}</td>
+                                <td class="border px-4 py-2">{{ $sparePart->nama_spare_part }}</td>
+                                <td class="border px-4 py-2">
+                                    @if ($sparePart->gambar)
+                                    <img src="{{ asset('storage/spare_parts/' . $sparePart->gambar) }}" alt="Spare Part Image" class="max-w-xs">
+                                    @else
+                                    No image available
+                                    @endif
+                                </td>
+                                <td class="border px-4 py-2">{{ $sparePart->deskripsi }}</td>
+                                <td class="border px-4 py-2">{{ $sparePart->harga }}</td>
+                                <td class="border px-4 py-2 text-center align-middle">{{ $sparePart->stock_spare_part }}</td>
+                                <td class="border px-4 py-2 text-center align-middle">
+                                    @if ($sparePart->stock_spare_part > 0)
+                                    <form action="{{ route('cart.store', $sparePart->id_spare_part) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary">Buy</button>
+                                    </form>
+                                    @else
+                                    <button class="btn btn-primary" disabled>No Stock</button>
+                                    @endif
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -16,11 +16,11 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                <tr>
-                                    <td class="border px-4 py-2">
-                                        <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.item_ordered.create', $user->id) }}" class="btn btn-info">{{  $user->name  }}</a></x-primary-button>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td class="border px-4 py-2">
+                                    <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.item_ordered.create', $user->id) }}" class="btn btn-info">{{ $user->name  }}</a></x-primary-button>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

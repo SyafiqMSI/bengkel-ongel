@@ -42,9 +42,9 @@
                         <div class="flex flex-col">
                             <span class="text-sm text-gray-600">Image:</span>
                             @if ($sparePart->picture)
-                                <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-full h-auto">
+                            <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-full h-auto">
                             @else
-                                <div class="max-w-xs mb-4 text-gray-500">No image available</div>
+                            <div class="max-w-xs mb-4 text-gray-500">No image available</div>
                             @endif
                         </div>
                     </div>

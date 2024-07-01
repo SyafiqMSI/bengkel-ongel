@@ -14,12 +14,23 @@ class SparePartController extends Controller
         return view('admin.spare_parts.index', compact('spareParts'));
     }
 
+    public function homepage()
+    {
+        $spareParts = SparePart::all();
+        return view('welcome', compact('spareParts'));
+    }
+
     public function view($id)
     {
         $sparePart = SparePart::findOrFail($id);
         return view('admin.spare_parts.view', compact('sparePart'));
     }
-    
+
+    public function details($id)
+    {
+        $sparePart = SparePart::findOrFail($id);
+        return view('client.sparepart.details', compact('sparePart'));
+    }
 
     public function create()
     {

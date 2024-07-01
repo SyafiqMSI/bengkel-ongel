@@ -30,8 +30,7 @@
             type: 'bar',
             data: {
                 labels: @json($months),
-                datasets: [
-                    {
+                datasets: [{
                         label: 'Sales Amount',
                         data: @json($salesAmount),
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -51,8 +50,7 @@
             },
             options: {
                 scales: {
-                    yAxes: [
-                        {
+                    yAxes: [{
                             type: 'linear',
                             display: true,
                             position: 'left',

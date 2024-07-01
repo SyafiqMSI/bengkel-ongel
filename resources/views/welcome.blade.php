@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,95 +36,181 @@
 
         .flex {
             display: flex;
-        }
-
-        .gap-4 {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            /* Align items to start flexing from the left */
             gap: 20px;
-        }
-
-        .mt-4 {
-            margin-top: 20px;
+            /* Adds spacing between cards */
+            margin-top: 120px;
+            /* Adjust as needed to avoid overlap with header */
         }
 
         .card {
-            background-color: #f0f0f0;
+            width: 200px;
             padding: 20px;
             border-radius: 8px;
-            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            /* Adjust spacing between cards */
+            text-decoration: none;
+            /* Removes underline from the anchor tag */
+            display: inline-block;
+            /* Ensures the anchor tag takes the size of its content */
+            transition: transform 0.2s;
+            /* Adds a smooth transition effect */
         }
 
-        .inner-card {
-            background-color: #ccc;
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
+        .card:hover {
+            transform: translateY(-5px);
+            /* Lifts the card slightly on hover */
         }
 
-        .sparepart-card {
-            background-color: #eee;
-            padding: 10px;
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555555;
+        }
+
+        .card img {
+            width: 100%;
             border-radius: 8px;
-            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        .card .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            /* Removes underline from the anchor tag */
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+            /* Adds a smooth transition effect for background color */
+        }
+
+        .card .button:hover {
+            background-color: #45a049;
+            /* Darkens the button color slightly on hover */
+        }
+
+        .search-container {
+            text-align: center;
+            /* Align search bar to the right */
+            flex-grow: 0.8
+                /* Allow search bar to grow and fill available space */
+        }
+
+        .search-container input[type=text] {
+            width: 100%;
+            /* Occupy full width available */
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.0rem;
+            line-height: 1.0;
+            max-width: 300px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            padding: 12px 20px;
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: #333;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header class="header">
-            <p style="font-size: 1.0rem; line-height: 1.0; max-width: 300px; font-weight: 600">Bengkel Ongel</p>
+            <p class="logo">Bengkel Ongel</p>
             <nav>
-                @guest
-                <a href="{{ route('login') }}" class="btn-login"
-                    style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Login</a>
-                <a href="{{ route('register') }}" class="btn-register"
-                    style="margin-left: 20px; padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Register</a>
-                @else
-                @if(Auth::user()->isAdmin())
-                <a href="{{ route('admin.dashboard') }}" class="btn-dashboard"
-                    style="margin-left: 20px; padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Dashboard</a>
-                @else
-                <a href="{{ route('profile.edit') }}" class="btn-profile"
-                    style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Profile</a>
-                <a href="#" class="btn-cart"
-                    style="margin-left: 20px; padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Cart</a>
-                @endif
-                @endguest
+                <div class="search-container">
+                    <input type="text" id="searchInput" onkeyup="filterCards()" placeholder="Search for spare parts...">
+                </div>
+                <div class="nav-links">
+                    @guest
+                    <a href="{{ route('login') }}" class="btn-login">Login</a>
+                    <a href="{{ route('register') }}" class="btn-register">Register</a>
+                    @else
+                    @if(Auth::user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" class="btn-dashboard">Dashboard</a>
+                    @else
+                    <a href="{{ route('profile.edit') }}" class="btn-profile">Profile</a>
+                    <a href="#" class="btn-cart">Cart</a>
+                    @endif
+                    @endguest
+                </div>
             </nav>
         </header>
 
-        <div style="position: relative; display: flex; height: 80vh; margin: 5vh 0;">
-            <div
-                style="background-image: url('https://i.pinimg.com/originals/7d/10/ea/7d10ea497feb26b63d93a4f6467da98e.jpg'); background-size: cover; background-position: center; flex: 1;">
+        <div style="position: relative; display: flex; height: 80vh; margin: 2vh 0;">
+            <div style="background-image: url('https://i.pinimg.com/originals/7d/10/ea/7d10ea497feb26b63d93a4f6467da98e.jpg'); background-size: cover; background-position: center; flex: 1;">
             </div>
             <div style="display: flex; flex-direction: column; text-align: left; padding: 30px 35px; width: 400px;">
                 <h1 style="font-size: 3.5rem; font-weight: 600; margin-bottom: 20px;">Welcome to Bengkel Ongel</h1>
                 <p style="font-size: 1.2rem; line-height: 1.6; max-width: 600px; margin-bottom: 20px;">Your trusted
                     partner for automotive repairs and services.</p>
                 <div class="actions" style="display: flex; gap: 20px; margin-top: 20px;">
-                    <a href="#services"
-                        style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Our
+                    <a href="#spareparts" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Our
                         Services</a>
-                    <a href="https://github.com/SyafiqMSI/bengkel-ongel/" target="_blank"
-                        style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Contact
+                    <a href="https://github.com/SyafiqMSI/bengkel-ongel/" target="_blank" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Contact
                         Us</a>
                 </div>
             </div>
         </div>
 
-        <form class="mt-6 space-y-6">
-            <div class="flex items-center gap-4" style="margin-bottom: 20px;">
-                <div class="card" style="background-color: #f0f0f0; padding: 20px; border-radius: 8px; flex: 1;">
-                    <h2 class="text-lg font-semibold">Service Detail 1</h2>
-                    <p>Your trusted partner for automotive repairs and services.</p>
-                    <div class="flex gap-4 mt-4">
-                        <div class="inner-card" style="background-color: #ccc; width: 100px; height: 100px; border-radius: 8px;"></div>
-                    </div>
-                    <div class="flex gap-4 mt-4">
-                    </div>
-                </div>
-            </div>
-        </form>
+        <div id="spareparts" class="flex" style="justify-content: center; margin:0">
+            @foreach ($spareParts as $sparePart)
+            <a href="{{  route('sparepart.details', $sparePart->spare_part_id)  }}" class="card spare-part">
+                <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+                <h2>{{ $sparePart->name  }}</h2>
+                <p>Rp {{ $sparePart->price  }}</p>
+            </a>
+            @endforeach
+        </div>
+
     </div>
+
     <footer style="width: 100%; text-align: center; color: #000; padding: 10px 0;">
         <div class="container">
             <div class="row mb-0 h6">
@@ -133,5 +220,27 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Function to filter cards based on input
+        function filterCards() {
+            var input, filter, spareParts, cards, card, title, i, txtValue;
+            input = document.getElementById('searchInput');
+            filter = input.value.toUpperCase();
+            cards = document.getElementsByClassName('spare-part');
+
+            for (i = 0; i < cards.length; i++) {
+                card = cards[i];
+                title = card.getElementsByTagName("h2")[0];
+                txtValue = title.textContent || title.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = "";
+                } else {
+                    card.style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
+
 </html>

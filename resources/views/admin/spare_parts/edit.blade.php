@@ -10,13 +10,13 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
                     <form action="{{ route('admin.spare_parts.update', $sparePart->spare_part_id) }}" method="POST" enctype="multipart/form-data">
@@ -33,9 +33,9 @@
                         <div class="mb-4">
                             <label for="picture" class="block text-gray-700 text-sm font-bold mb-2">Current Image</label><br>
                             @if ($sparePart->picture)
-                                <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs">
+                            <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs">
                             @else
-                                No image available
+                            No image available
                             @endif
                             <input type="file" id="picture" name="picture" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>

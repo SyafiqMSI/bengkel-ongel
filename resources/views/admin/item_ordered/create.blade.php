@@ -15,7 +15,7 @@
                             <label for="id_items_ordered" class="block text-gray-700 text-sm font-bold mb-2">Items Ordered ID</label>
                             <input type="text" id="id_items_ordered" name="id_items_ordered" value="{{ old('id_items_ordered') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             @error('id_items_ordered')
-                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -24,13 +24,13 @@
                             <select id="appointment_id" name="appointment_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="">Select Appointment ID</option>
                                 @foreach($appointments as $appointment)
-                                    <option value="{{ $appointment->appointment_id }}">
-                                        {{ $appointment->appointment_id }}
-                                    </option>
+                                <option value="{{ $appointment->appointment_id }}">
+                                    {{ $appointment->appointment_id }}
+                                </option>
                                 @endforeach
                             </select>
                             @error('appointment_id')
-                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
 
@@ -38,23 +38,23 @@
                             <label for="sparepart_id" class="block text-gray-700 text-sm font-bold mb-2">Spare Part ID</label>
                             <input type="text" id="sparepart_id" name="sparepart_id" value="{{ old('sparepart_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             @error('sparepart_id')
-                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-4">
                             <label for="amount" class="block text-gray-700 text-sm font-bold mb-2">Amount</label>
                             <input type="number" id="amount" name="amount" value="{{ old('amount') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                             @error('amount')
-                                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>
                         <a href="{{ route('admin.item_ordered.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
                         <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
-                        </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
 </x-app-layout>
 

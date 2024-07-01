@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     @if (session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
+                    <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
 
                     <div class="mt-10 mb-10 text-2xl">
@@ -30,24 +30,24 @@
                             </thead>
                             <tbody>
                                 @foreach ($appointments as $appointment)
-                                    <tr>
-                                        <td class="border px-4 py-2">{{ $appointment->appointment_id }}</td>
-                                        <td class="border px-4 py-2">
-                                            <a href="{{ route('admin.item_ordered.indexappointment', $appointment->appointment_id) }}">View Ordered Items</a>
-                                        </td>
-                                        <td class="border px-4 py-2">{{ $appointment->user_id }}</td>
-                                        <td class="border px-4 py-2">{{ $appointment->date }}</td>
-                                        <td class="border px-4 py-2">{{ $appointment->status }}</td>
-                                        <td class="border px-4 py-2">
+                                <tr>
+                                    <td class="border px-4 py-2">{{ $appointment->appointment_id }}</td>
+                                    <td class="border px-4 py-2">
+                                        <a href="{{ route('admin.item_ordered.indexappointment', $appointment->appointment_id) }}">View Ordered Items</a>
+                                    </td>
+                                    <td class="border px-4 py-2">{{ $appointment->user_id }}</td>
+                                    <td class="border px-4 py-2">{{ $appointment->date }}</td>
+                                    <td class="border px-4 py-2">{{ $appointment->status }}</td>
+                                    <td class="border px-4 py-2">
                                         <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.edit', $appointment->appointment_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
                                         <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('admin.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
-                                            <form action="{{ route('admin.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
-                                            </form>
-                                        </td>
-                                    </tr>
+                                        <form action="{{ route('admin.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>

@@ -6,12 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\SparePartController;
 use App\Http\Controllers\Admin\AppointmentController;
+use App\Http\Controllers\User\AppointmentControllerUser;
 use App\Http\Controllers\Admin\ItemsOrderedController;
 use App\Http\Controllers\CartController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [SparePartController::class, 'homepage'])->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,13 +28,15 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
-    Route::get('/client/appointment', [AppointmentController::class, 'index'])->name('client.appointment.index');
-    Route::get('/client/appointment/create', [AppointmentController::class, 'create'])->name('client.appointment.create');
-    Route::post('/client/appointment', [AppointmentController::class, 'store'])->name('client.appointment.store');
-    Route::get('/client/appointment/{id}/view', [AppointmentController::class, 'view'])->name('client.appointment.view');
-    Route::get('/client/appointment/{id}/edit', [AppointmentController::class, 'edit'])->name('client.appointment.edit');
-    Route::patch('/client/appointment/{id}', [AppointmentController::class, 'update'])->name('client.appointment.update');
-    Route::delete('/client/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('client.appointment.destroy');
+    Route::get('/sparepart/{id}', [SparePartController::class, 'details'])->name('sparepart.details');
+    
+    Route::get('/client/appointment', [AppointmentControllerUser::class, 'index'])->name('client.appointment.index');
+    Route::get('/client/appointment/create', [AppointmentControllerUser::class, 'create'])->name('client.appointment.create');
+    Route::post('/client/appointment', [AppointmentControllerUser::class, 'store'])->name('client.appointment.store');
+    Route::get('/client/appointment/{id}/view', [AppointmentControllerUser::class, 'view'])->name('client.appointment.view');
+    Route::get('/client/appointment/{id}/edit', [AppointmentControllerUser::class, 'edit'])->name('client.appointment.edit');
+    Route::patch('/client/appointment/{id}', [AppointmentControllerUser::class, 'update'])->name('client.appointment.update');
+    Route::delete('/client/appointment/{appointments}', [AppointmentControllerUser::class, 'destroy'])->name('client.appointment.destroy');
 });
 
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {

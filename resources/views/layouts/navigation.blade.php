@@ -11,39 +11,39 @@
                 </div>
 
                 @if (Auth::user()->usertype == 'admin')
-                    <!-- Navigation Links Admin -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('welcome') : route('client.dashboard')">
-                            {{ __('Home') }}
-                        </x-nav-link>
-                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('client.dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('admin.spare_parts.index')" :active="request()->routeIs('admin.spare_parts.*')">
-                            {{ __('Spare Parts') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('admin.appointment.index')" :active="request()->routeIs('admin.appointment.*')">
-                            {{ __('Appointments') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('admin.item_ordered.index')" :active="request()->routeIs('admin.item_ordered.*')">
-                            {{ __('Items Ordered') }}
-                        </x-nav-link>
-                    </div>
+                <!-- Navigation Links Admin -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('welcome') : route('client.dashboard')">
+                        {{ __('Home') }}
+                    </x-nav-link>
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('client.dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.spare_parts.index')" :active="request()->routeIs('admin.spare_parts.*')">
+                        {{ __('Spare Parts') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.appointment.index')" :active="request()->routeIs('admin.appointment.*')">
+                        {{ __('Appointments') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.item_ordered.index')" :active="request()->routeIs('admin.item_ordered.*')">
+                        {{ __('Items Ordered') }}
+                    </x-nav-link>
+                </div>
 
-               @else
-                    <!-- Navigation Links User -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('client.dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                        <!-- Cart -->
-                        <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
-                            {{ __('Cart') }}
-                        </x-nav-link>      
-                        <x-nav-link :href="route('client.appointment.index')" :active="request()->routeIs('client.appointment.*')">
-                            {{ __('Appointments') }}
-                        </x-nav-link>                      
-                    </div>
+                @else
+                <!-- Navigation Links User -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('welcome')" :active="request()->routeIs('client.dashboard')">
+                        {{ __('Home') }}
+                    </x-nav-link>
+                    <!-- Cart -->
+                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+                        {{ __('Cart') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('client.appointment.index')" :active="request()->routeIs('client.appointment.*')">
+                        {{ __('Appointments') }}
+                    </x-nav-link>
+                </div>
                 @endif
             </div>
 
@@ -71,8 +71,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -97,27 +96,27 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @if (Auth::user()->usertype == 'admin')
-                <!-- Navigation Links Admin -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('client.dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('admin.spare_parts.index')" :active="request()->routeIs('admin.spare_parts.*')">
-                        {{ __('Spare Parts') }}
-                    </x-nav-link>
-                </div>
+            <!-- Navigation Links Admin -->
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('client.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+                <x-nav-link :href="route('admin.spare_parts.index')" :active="request()->routeIs('admin.spare_parts.*')">
+                    {{ __('Spare Parts') }}
+                </x-nav-link>
+            </div>
 
             @else
-                <!-- Navigation Links User -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('client.dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <!-- Cart -->
-                    <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
-                        {{ __('Cart') }}
-                    </x-nav-link>    
-                </div>
+            <!-- Navigation Links User -->
+            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('client.dashboard')">
+                    {{ __('Dashboard') }}
+                </x-nav-link>
+                <!-- Cart -->
+                <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
+                    {{ __('Cart') }}
+                </x-nav-link>
+            </div>
             @endif
         </div>
 
@@ -137,8 +136,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
