@@ -22,7 +22,7 @@ class SparePartsTableSeeder extends Seeder
                 'entry_date' => '2024-05-17',
                 'description' => 'Ban motor untuk berbagai jenis motor.', 
                 'price' => 250000,
-                'picture' => 'bengkel.png'
+                'picture' => 'ride.png'
             ],
             [
                 'spare_part_id' => 1012,
@@ -31,7 +31,7 @@ class SparePartsTableSeeder extends Seeder
                 'entry_date' => '2024-05-17',
                 'description' => 'Rantai motor tahan lama dan kuat.', 
                 'price' => 300000,
-                'picture' => 'bengkel.png'
+                'picture' => 'ride.png'
             ],
             [
                 'spare_part_id' => 1013,
@@ -40,7 +40,7 @@ class SparePartsTableSeeder extends Seeder
                 'entry_date' => '2024-05-17',
                 'description' => 'Busi untuk mesin motor yang awet.', 
                 'price' => 50000,
-                'picture' => 'bengkel.png'
+                'picture' => 'ride.png'
             ],
             [
                 'spare_part_id' => 1014,
@@ -49,7 +49,7 @@ class SparePartsTableSeeder extends Seeder
                 'entry_date' => '2024-05-17',
                 'description' => 'Kampas rem berkualitas tinggi.', 
                 'price' => 150000,
-                'picture' => 'bengkel.png'
+                'picture' => 'ride.png'
             ],
         ]);
 
@@ -63,11 +63,11 @@ class SparePartsTableSeeder extends Seeder
             ->where('spare_part_id', 1014)
             ->delete();
 
-        $source = public_path('spare_parts/bengkel.png');
-        $destination = public_path('storage/spare_parts/bengkel.png');
+        $source = public_path('spare_part/ride.png');
+        $destination = storage_path('app/public/spare_parts/ride.png');
         
         if (File::exists($source)) {
-            File::ensureDirectoryExists(public_path('storage/spare_parts'));
+            File::ensureDirectoryExists(storage_path('app/public/spare_parts'));
             File::copy($source, $destination);
         }
     }

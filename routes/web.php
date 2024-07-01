@@ -22,12 +22,20 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware(['auth', 'userMiddleware'])->group(function () {
-    Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+    Route::get('/client/dashboard', [UserController::class, 'index'])->name('client.dashboard');
     Route::get('/cart/create/{id}', [UserController::class, 'createCart'])->name('cart.create');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/{id_spare_part}', [CartController::class, 'store'])->name('cart.store');
     Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::get('/client/appointment', [AppointmentController::class, 'index'])->name('client.appointment.index');
+    Route::get('/client/appointment/create', [AppointmentController::class, 'create'])->name('client.appointment.create');
+    Route::post('/client/appointment', [AppointmentController::class, 'store'])->name('client.appointment.store');
+    Route::get('/client/appointment/{id}/view', [AppointmentController::class, 'view'])->name('client.appointment.view');
+    Route::get('/client/appointment/{id}/edit', [AppointmentController::class, 'edit'])->name('client.appointment.edit');
+    Route::patch('/client/appointment/{id}', [AppointmentController::class, 'update'])->name('client.appointment.update');
+    Route::delete('/client/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('client.appointment.destroy');
 });
 
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {

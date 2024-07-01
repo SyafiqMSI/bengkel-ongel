@@ -56,7 +56,7 @@ class CartController extends Controller
         ]);
         
 
-        return redirect()->route('dashboard')->with('success', 'Item added to cart successfully!');
+        return redirect()->route('client.dashboard')->with('success', 'Item added to cart successfully!');
     }
 
     public function update(Request $request, $id)

@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index(){
         $spareParts = SparePart::all(); 
-        return view('dashboard', compact('spareParts'));
+        return view('client.dashboard', compact('spareParts'));
     }
     public function createCart($id)
     {

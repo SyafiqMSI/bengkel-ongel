@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard') }}">
+                    <a href="{{ Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
@@ -13,10 +13,10 @@
                 @if (Auth::user()->usertype == 'admin')
                     <!-- Navigation Links Admin -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('welcome') : route('dashboard')">
+                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('welcome') : route('client.dashboard')">
                             {{ __('Home') }}
                         </x-nav-link>
-                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
+                        <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('client.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                         <x-nav-link :href="route('admin.spare_parts.index')" :active="request()->routeIs('admin.spare_parts.*')">
@@ -33,13 +33,16 @@
                @else
                     <!-- Navigation Links User -->
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('client.dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                         <!-- Cart -->
                         <x-nav-link :href="route('cart.index')" :active="request()->routeIs('cart.index')">
                             {{ __('Cart') }}
-                        </x-nav-link>                            
+                        </x-nav-link>      
+                        <x-nav-link :href="route('client.appointment.index')" :active="request()->routeIs('client.appointment.*')">
+                            {{ __('Appointments') }}
+                        </x-nav-link>                      
                     </div>
                 @endif
             </div>
@@ -96,7 +99,7 @@
             @if (Auth::user()->usertype == 'admin')
                 <!-- Navigation Links Admin -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('dashboard')">
+                    <x-nav-link :href="Auth::user()->usertype == 'admin' ? route('admin.dashboard') : route('client.dashboard')" :active="Auth::user()->usertype == 'admin' ? request()->routeIs('admin.dashboard') : request()->routeIs('client.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.spare_parts.index')" :active="request()->routeIs('admin.spare_parts.*')">
@@ -107,7 +110,7 @@
             @else
                 <!-- Navigation Links User -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('client.dashboard')" :active="request()->routeIs('client.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <!-- Cart -->
