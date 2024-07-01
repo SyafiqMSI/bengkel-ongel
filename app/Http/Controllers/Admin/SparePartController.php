@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class SparePartController extends Controller
 {
@@ -29,8 +30,23 @@ class SparePartController extends Controller
     public function details($id)
     {
         $sparePart = SparePart::findOrFail($id);
+        
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            return $this->detailsForAdmin($sparePart);
+        } else {
+            return $this->detailsForPublic($sparePart);
+        }
+    }
+    
+    private function detailsForPublic($sparePart)
+    {
         $spareparts = SparePart::inRandomOrder()->limit(4)->get();
         return view('client.sparepart.details', compact('sparePart', 'spareparts'));
+    }
+
+    private function detailsForAdmin($sparePart)
+    {
+        return view('admin.sparepart.details', compact('sparePart'));
     }
 
     public function create()

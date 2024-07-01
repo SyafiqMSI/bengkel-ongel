@@ -41,6 +41,7 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
 });
 
 Route::middleware(['auth', 'adminMiddleware'])->group(function () {
+    Route::get('/sparepart/{id}', [SparePartController::class, 'details'])->name('sparepart.details');
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/spare_parts', [SparePartController::class, 'index'])->name('admin.spare_parts.index');
