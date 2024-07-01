@@ -16,7 +16,7 @@ class SparePartController extends Controller
 
     public function homepage()
     {
-        $spareParts = SparePart::all();
+        $spareParts = SparePart::inRandomOrder()->limit(10)->get();
         return view('welcome', compact('spareParts'));
     }
 
@@ -29,7 +29,8 @@ class SparePartController extends Controller
     public function details($id)
     {
         $sparePart = SparePart::findOrFail($id);
-        return view('client.sparepart.details', compact('sparePart'));
+        $spareparts = SparePart::inRandomOrder()->limit(4)->get();
+        return view('client.sparepart.details', compact('sparePart', 'spareparts'));
     }
 
     public function create()

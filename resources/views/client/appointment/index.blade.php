@@ -12,39 +12,28 @@
                     @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
-
-                    <div class="mt-10 mb-10 text-2xl">
-                        <a href="{{ route('client.appointment.create') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Add Appointment</a>
-                    </div>
-
                     <div class="mb-18">
                         <table class="table-auto w-full mb-6 mt-6">
                             <thead>
                                 <tr class="bg-gray-100">
-                                    <th class="border px-4 py-2">ID</th>
-                                    <th class="border px-4 py-2">Items Ordered</th>
-                                    <th class="border px-4 py-2">ID User</th>
                                     <th class="border px-4 py-2">Day</th>
                                     <th class="border px-4 py-2">Status</th>
+                                    <th class="border px-4 py-2">Descriptions</th>
                                     <th class="border px-4 py-2">Action</th>
                             </thead>
                             <tbody>
                                 @foreach ($appointments as $appointment)
                                 <tr>
-                                    <td class="border px-4 py-2">{{ $appointment->appointment_id }}</td>
-                                    <td class="border px-4 py-2">
-                                        <a href="{{ route('client.item_ordered.indexappointment', $appointment->appointment_id) }}">View Ordered Items</a>
-                                    </td>
-                                    <td class="border px-4 py-2">{{ $appointment->user_id }}</td>
                                     <td class="border px-4 py-2">{{ $appointment->date }}</td>
                                     <td class="border px-4 py-2">{{ $appointment->status }}</td>
+                                    <td class="border px-4 py-2">{{ $appointment->descriptions }}</td>
                                     <td class="border px-4 py-2">
                                         <x-primary-button style="background-color: rgb(254,245,117); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('client.appointment.edit', $appointment->appointment_id) }}" class="btn btn-primary">Edit</a></x-primary-button>
-                                        <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{ route('client.appointment.view', $appointment->appointment_id) }}" class="btn btn-info">View</a></x-primary-button>
+                                        <x-primary-button style="background-color: rgb(116,116,253); color: black; border: 1px solid gray;" class="ms-1"><a href="{{  route('client.appointment.ordered', $appointment->appointment_id);  }}">View Ordered Items</a></x-primary-button>
                                         <form action="{{ route('client.appointment.destroy', $appointment->appointment_id) }}" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
+                                            <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Cancel</a></x-primary-button>
                                         </form>
                                     </td>
                                 </tr>

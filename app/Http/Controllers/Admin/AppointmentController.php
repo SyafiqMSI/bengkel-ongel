@@ -27,6 +27,7 @@ class AppointmentController extends Controller
         $users = User::all();
         return view('admin.appointment.create', compact('users'));
     }
+    
 
     public function store(Request $request)
     {
@@ -59,6 +60,21 @@ class AppointmentController extends Controller
         // Update the appointment with new data
         $appointment->update($request->all());
 
+        return redirect()->route('admin.appointment.index')
+            ->with('success', 'Appointment updated successfully.');
+    }
+
+    public function done($id)
+    {
+        // Find the appointment by ID
+        $appointment = Appointment::findOrFail($id);
+    
+        // Update the status to "done"
+        $appointment->status = 'done';
+        
+        // Save the updated appointment
+        $appointment->save();
+    
         return redirect()->route('admin.appointment.index')
             ->with('success', 'Appointment updated successfully.');
     }

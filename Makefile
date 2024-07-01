@@ -42,3 +42,6 @@ migrate:
 	php artisan optimize
 	php artisan cache:clear
 	php artisan migrate:fresh --seed
+
+build:
+	npm run build

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\ItemsOrdered;
 use App\Models\User;
 
 class AppointmentControllerUser extends Controller
@@ -22,27 +24,51 @@ class AppointmentControllerUser extends Controller
         return view('client.appointment.view', compact('appointment', 'username'));
     }
 
+    public function ordered($id)
+    {
+        $orderedItems = ItemsOrdered::where('appointment_id', $id)->get();
+        return view('client.appointment.ordered', compact('orderedItems'));
+    }
+
     public function create()
     {
-        $users = User::all();
-        return view('client.appointment.create', compact('users'));
+        $user_id = auth()->user()->id;
+        $carts = Cart::where('user_id', $user_id)->get();
+        return view('client.appointment.create', compact('carts'));
     }
 
     public function store(Request $request)
     {
+        $request->validate([
+            'user_id' => 'required',
+            'date' => 'required|date',
+            'descriptions' => 'required|string',
+        ]);
 
-        //belum selesai
-
-        Appointment::create([
+        $appointment = Appointment::create([
             'appointment_id' => $request->appointment_id,
             'user_id' => $request->user_id,
             'date' => $request->date,
-            'status' => $request->status
+            'descriptions' => $request->descriptions,
+            'status' => "Booked",
         ]);
 
+        $cartItems = Cart::where('user_id', $request->user_id)->get();
+    
+        foreach ($cartItems as $cartItem) {
+            ItemsOrdered::create([
+                'appointment_id' => $appointment->appointment_id,
+                'spare_part_id' => $cartItem->spare_part_id,
+                'amount' => $cartItem->quantity,
+            ]);
+        }
+    
+        Cart::where('user_id', $request->user_id)->delete();
+    
         return redirect()->route('client.appointment.index')
             ->with('success', 'Appointment created successfully.');
     }
+    
 
     public function edit($id)
     {
@@ -50,14 +76,22 @@ class AppointmentControllerUser extends Controller
         return view('client.appointment.edit', compact('appointment'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $appointment = Appointment::findOrFail($id);
-
-        //belum selesai
-
+        $request->validate([
+            'appointment_id' => 'required',
+            'date' => 'required|date',
+        ]);
+    
+        // Find the appointment by ID
+        $appointment = Appointment::findOrFail($request->appointment_id);
+    
         // Update the appointment with new data
-        $appointment->update($request->all());
+        $appointment->date = $request->date;
+        $appointment->descriptions = $request->descriptions;
+    
+        // Save the updated appointment
+        $appointment->save();
 
         return redirect()->route('client.appointment.index')
             ->with('success', 'Appointment updated successfully.');

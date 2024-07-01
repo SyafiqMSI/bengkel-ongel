@@ -41,13 +41,12 @@
                                     <td class="border px-4 py-2">{{ $sparePart->name }}</td>
                                     <td class="border px-4 py-2">
                                         @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
-                                        <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs">
+                                        <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs" width="200" height="200">
                                         @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
-                                        <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs">
+                                        <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs" width="200" height="200">
                                         @else
                                         No image available
                                         @endif
-
                                     </td>
                                     <td class="border px-4 py-2">{{ $sparePart->description }}</td>
                                     <td class="border px-4 py-2">{{ $sparePart->price }}</td>

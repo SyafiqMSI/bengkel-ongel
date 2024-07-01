@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('appointment_id');
             $table->unsignedBigInteger('user_id');
             $table->date('date');
+            $table->string('descriptions')->nullable();
             $table->string('status');
             $table->timestamps();
         });

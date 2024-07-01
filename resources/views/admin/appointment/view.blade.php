@@ -24,10 +24,6 @@
                             <span class="text-lg font-semibold">{{ $appointment->appointment_id }}</span>
                         </div>
                         <div class="flex flex-col">
-                            <span class="text-sm text-gray-600">ID_Order:</span>
-                            <p class="text-lg">{{ $appointment->items_ordered_id }}</p>
-                        </div>
-                        <div class="flex flex-col">
                             <span class="text-sm text-gray-600">ID_User:</span>
                             <span class="text-lg font-semibold">{{ $appointment->user_id }}</span>
                         </div>

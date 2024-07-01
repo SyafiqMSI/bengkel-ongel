@@ -24,18 +24,19 @@ Route::middleware(['auth', 'userMiddleware'])->group(function () {
     Route::get('/client/dashboard', [UserController::class, 'index'])->name('client.dashboard');
     Route::get('/cart/create/{id}', [UserController::class, 'createCart'])->name('cart.create');
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/{id_spare_part}', [CartController::class, 'store'])->name('cart.store');
+    Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
     Route::put('/cart/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/{id}', [CartController::class, 'destroy'])->name('cart.destroy');
 
     Route::get('/sparepart/{id}', [SparePartController::class, 'details'])->name('sparepart.details');
     
     Route::get('/client/appointment', [AppointmentControllerUser::class, 'index'])->name('client.appointment.index');
-    Route::get('/client/appointment/create', [AppointmentControllerUser::class, 'create'])->name('client.appointment.create');
     Route::post('/client/appointment', [AppointmentControllerUser::class, 'store'])->name('client.appointment.store');
+    Route::get('/client/appointment/ordereditems/{id}', [AppointmentControllerUser::class, 'ordered'])->name('client.appointment.ordered');
+    Route::get('/client/appointment/create', [AppointmentControllerUser::class, 'create'])->name('client.appointment.create');
     Route::get('/client/appointment/{id}/view', [AppointmentControllerUser::class, 'view'])->name('client.appointment.view');
     Route::get('/client/appointment/{id}/edit', [AppointmentControllerUser::class, 'edit'])->name('client.appointment.edit');
-    Route::patch('/client/appointment/{id}', [AppointmentControllerUser::class, 'update'])->name('client.appointment.update');
+    Route::patch('/client/appointment/update', [AppointmentControllerUser::class, 'update'])->name('client.appointment.update');
     Route::delete('/client/appointment/{appointments}', [AppointmentControllerUser::class, 'destroy'])->name('client.appointment.destroy');
 });
 
@@ -55,7 +56,8 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::post('/admin/appointment', [AppointmentController::class, 'store'])->name('admin.appointment.store');
     Route::get('/admin/appointment/{id}/view', [AppointmentController::class, 'view'])->name('admin.appointment.view');
     Route::get('/admin/appointment/{id}/edit', [AppointmentController::class, 'edit'])->name('admin.appointment.edit');
-    Route::patch('/admin/appointment/{id}', [AppointmentController::class, 'update'])->name('admin.appointment.update');
+    Route::patch('/admin/appointment/update/{id}', [AppointmentController::class, 'update'])->name('admin.appointment.update');
+    Route::patch('/admin/appointment/{id}', [AppointmentController::class, 'done'])->name('admin.appointment.done');
     Route::delete('/admin/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('admin.appointment.destroy');
 
     Route::get('/admin/item_ordered', [ItemsOrderedController::class, 'index'])->name('admin.item_ordered.index');

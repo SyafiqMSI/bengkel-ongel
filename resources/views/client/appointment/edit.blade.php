@@ -19,26 +19,19 @@
                     </div>
                     @endif
 
-                    <form action="{{ route('client.appointment.update', $appointment->appointment_id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('client.appointment.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
-                        <div class="mb-4">
-                            <label for="appointment_id" class="block text-gray-700 text-sm font-bold mb-2">ID</label>
-                            <input type="text" id="appointment_id" name="appointment_id" value="{{ $appointment->appointment_id }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
-                        <div class="mb-4">
-                            <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">User ID</label>
-                            <input type="text" id="user_id" name="user_id" value="{{ $appointment->user_id }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        </div>
+                        <input type="hidden" name="appointment_id" value="{{ $appointment->appointment_id }}">
                         <div class="mb-4">
                             <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Day</label>
                             <input type="date" id="date" name="date" value="{{ $appointment->date }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <div class="mb-4">
-                            <label for="status" class="block text-gray-700 text-sm font-bold mb-2">Status</label>
-                            <input type="text" id="status" name="status" value="{{ $appointment->status }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <label for="descriptions" class="block text-gray-700 text-sm font-bold mb-2">description</label>
+                            <input type="text" id="descriptions" name="descriptions" value="{{ $appointment->descriptions }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
-                        <a href="{{ route('client.appointment.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
+                        <a href="{{ route('client.appointment.index' ) }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
                         <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
                 </div>
                 </form>

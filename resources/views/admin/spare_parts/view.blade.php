@@ -41,10 +41,12 @@
                         </div>
                         <div class="flex flex-col">
                             <span class="text-sm text-gray-600">Image:</span>
-                            @if ($sparePart->picture)
-                            <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-full h-auto">
+                            @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
+                            <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs" width="200" height="200">
+                            @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
+                            <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs" width="200" height="200">
                             @else
-                            <div class="max-w-xs mb-4 text-gray-500">No image available</div>
+                            No image available
                             @endif
                         </div>
                     </div>

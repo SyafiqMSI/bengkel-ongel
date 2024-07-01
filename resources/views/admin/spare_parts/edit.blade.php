@@ -32,8 +32,10 @@
                         </div>
                         <div class="mb-4">
                             <label for="picture" class="block text-gray-700 text-sm font-bold mb-2">Current Image</label><br>
-                            @if ($sparePart->picture)
-                            <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs">
+                            @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
+                            <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs" width="200" height="200">
+                            @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
+                            <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" class="max-w-xs" width="200" height="200">
                             @else
                             No image available
                             @endif

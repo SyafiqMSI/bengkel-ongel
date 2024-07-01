@@ -22,42 +22,45 @@ class CartController extends Controller
         return view('cart.create', compact('sparePart'));
     }
 
-    public function store($spare_part_id)
+    public function store(Request $request)
     {
-        $sparePart = SparePart::findOrFail($spare_part_id);
-
-        if ($sparePart->stock <= 0) {
-            return redirect()->back()->with('error', 'No Stock')->withInput();
+        // Validate the request
+        $request->validate([
+            'spare_part_id' => 'required|exists:spare_parts,spare_part_id',
+            'amount' => 'required|integer|min:1',
+        ]);
+    
+        $sparePartId = $request->input('spare_part_id');
+        $amount = $request->input('amount');
+        $sparePart = SparePart::findOrFail($sparePartId);
+    
+        // Check if the stock is sufficient
+        if ($sparePart->stock < $amount) {
+            return redirect()->back()->with('error', 'Not enough stock available')->withInput();
         }
-
-        $user_id = auth()->user()->id;
-        $cartItem = Cart::where('user_id', $user_id)
-                        ->where('spare_part_id', $spare_part_id)
+    
+        $userId = auth()->user()->id;
+        $cartItem = Cart::where('user_id', $userId)
+                        ->where('spare_part_id', $sparePartId)
                         ->first();
-
+    
         if ($cartItem) {
-            $cartItem->quantity += 1;
+            $cartItem->quantity += $amount;
             $cartItem->save();
-            $sparePart->decrement('stock');
         } else {
             $cartItem = new Cart();
-            $cartItem->user_id = $user_id;
-            $cartItem->spare_part_id = $spare_part_id;
-            $cartItem->quantity = 1;
+            $cartItem->user_id = $userId;
+            $cartItem->spare_part_id = $sparePartId;
+            $cartItem->quantity = $amount;
             $cartItem->save();
-            $sparePart->decrement('stock');
         }
-
-        Order::create([
-            'spare_part_id' => $spare_part_id,
-            'quantity' => 1,  
-            'amount' => $sparePart->price,  
-            'user_id' => $user_id,
-        ]);
-        
-
-        return redirect()->route('client.dashboard')->with('success', 'Item added to cart successfully!');
+    
+        // Decrease the stock
+        $sparePart->decrement('stock', $amount);
+    
+        return redirect()->route('cart.index')->with('success', 'Item added to cart successfully!');
     }
+    
 
     public function update(Request $request, $id)
     {
