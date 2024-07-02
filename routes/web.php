@@ -60,7 +60,7 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::patch('/admin/appointment/update/{id}', [AppointmentController::class, 'update'])->name('admin.appointment.update');
     Route::patch('/admin/appointment/{id}/done', [AppointmentController::class, 'done'])->name('admin.appointment.done');
     Route::delete('/admin/appointment/{appointments}', [AppointmentController::class, 'destroy'])->name('admin.appointment.destroy');
-
+    
     Route::get('/admin/item_ordered', [ItemsOrderedController::class, 'index'])->name('admin.item_ordered.index');
     Route::get('/admin/item_ordered/spareparts', [ItemsOrderedController::class, 'spareparts'])->name('admin.item_ordered.spareparts');
     Route::get('/admin/item_ordered/{appointmentId}/appointment', [ItemsOrderedController::class, 'indexAppointment'])->name('admin.item_ordered.indexappointment');
@@ -71,5 +71,6 @@ Route::middleware(['auth', 'adminMiddleware'])->group(function () {
     Route::get('/admin/item_ordered/{id}/edit', [ItemsOrderedController::class, 'edit'])->name('admin.item_ordered.edit');
     Route::patch('/admin/item_ordered/{id}', [ItemsOrderedController::class, 'update'])->name('admin.item_ordered.update');
     Route::delete('/admin/item_ordered/{itemsorder}', [ItemsOrderedController::class, 'destroy'])->name('admin.item_ordered.destroy');
-
+    
+    Route::get('/sparepart/admin/{id}', [SparePartController::class, 'detailsAdmin'])->name('admin.spare_parts.details');
 });

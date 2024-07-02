@@ -9,11 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class SparePartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $spareParts = SparePart::all();
+        $search = $request->input('search');
+        $perPage = $request->input('perPage', 5); 
+        
+        $spareParts = SparePart::where(function ($query) use ($search) {
+            $query->where('name', 'LIKE', "%$search%")
+                ->orWhere('description', 'LIKE', "%$search%");
+        })->paginate($perPage); 
         return view('admin.spare_parts.index', compact('spareParts'));
     }
+    
+
+    
 
     public function homepage()
     {
@@ -32,6 +41,14 @@ class SparePartController extends Controller
         $sparePart = SparePart::findOrFail($id);
         $spareparts = SparePart::inRandomOrder()->limit(4)->get();
         return view('client.sparepart.details', compact('sparePart', 'spareparts'));
+    
+    }
+
+    public function detailsAdmin($id)
+    {
+        $sparePart = SparePart::findOrFail($id);
+        $spareparts = SparePart::inRandomOrder()->limit(4)->get();
+        return view('admin.spare_parts.details', compact('sparePart', 'spareparts'));
     
     }
 

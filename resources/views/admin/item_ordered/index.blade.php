@@ -44,6 +44,7 @@
                                                 @method('DELETE')
                                                 <x-primary-button style="background-color: rgb(253,116,116); color: black; border: 1px solid gray;" class="ms-1"><a type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this spare part?')">Delete</a></x-primary-button>
                                             </form>
+                                        </div>
                                     </td>
                     </div>
                     </tr>

@@ -67,23 +67,20 @@ class AppointmentController extends Controller
 
     public function done($id)
     {
-        // Find the appointment by ID
+ 
         $appointment = Appointment::findOrFail($id);
-    
-        // Update the status to "done"
+
         $appointment->status = 'done';
-        
-        // Save the updated appointment
+ 
         $appointment->save();
-    
-        // Create orders for items in the appointment
+ 
         $orderedItems = ItemsOrdered::where('appointment_id', $appointment->appointment_id)->get();
     
         foreach ($orderedItems as $orderedItem) {
             $order = new Order();
             $order->spare_part_id = $orderedItem->spare_part_id;
-            $order->quantity = $orderedItem->amount; // Adjust as per your item structure
-            $order->amount = $orderedItem->sparePart->price * $orderedItem->amount; // Adjust as per your item structure
+            $order->quantity = $orderedItem->amount; 
+            $order->amount = $orderedItem->sparePart->price * $orderedItem->amount; 
             $order->save();
         }
     

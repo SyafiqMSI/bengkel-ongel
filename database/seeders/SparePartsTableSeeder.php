@@ -108,7 +108,7 @@ Produk Realpict Sesuai Foto Di Iklan.',
                 'entry_date' => '2024-05-17',
                 'description' => 'MERK GMA TST, Harga 1 set (kiri kanan),nyala lampu kuning.', 
                 'price' => 15000,
-                'picture' => 'Lampu_Sein.jpeg'
+                'picture' => 'Lampu_Sein.jpg'
             ],
             [
                 'spare_part_id' => 1021,

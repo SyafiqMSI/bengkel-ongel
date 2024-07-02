@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -13,15 +12,19 @@
                     @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
-                    <div class="mt-10 text-2xl">
-                        <a href="{{ route('admin.spare_parts.create') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Add
-                            New Spare Part</a>
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <a href="{{ route('admin.spare_parts.create') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Add New Spare Part</a>
+                        </div>
+                        <div class="relative flex">
+                            <form action="{{ route('admin.spare_parts.index') }}" method="GET" id="searchForm">
+                                <input type="text" name="search" id="search" value="{{ request()->get('search') }}" placeholder="Search..." class="block w-64 py-2 px-3 border border-gray-300 placeholder-gray-500 focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 rounded-md">
+                            </form>
+                        </div>
                     </div>
 
-
-
-                    <div class="mb-18">
-                        <table class="table-auto w-full mb-6 mt-6">
+                    <div class="mb-6">
+                        <table class="table-auto w-full">
                             <thead>
                                 <tr class="bg-gray-100">
                                     <th class="border px-4 py-2">ID</th>
@@ -68,8 +71,28 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mb-6">
+                        {{ $spareParts->appends(request()->input())->links() }}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const searchForm = document.getElementById('searchForm');
+
+            searchInput.addEventListener('input', function() {
+                searchForm.submit();
+            });
+        });
+
+        function changePerPage() {
+            const perPageSelect = document.getElementById('perPage');
+            perPageSelect.form.submit();
+        }
+    </script>
+
 </x-app-layout>
