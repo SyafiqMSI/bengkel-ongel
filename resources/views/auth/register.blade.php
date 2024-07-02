@@ -1,6 +1,5 @@
 <x-guest-layout>
-<img src="https://i.pinimg.com/originals/7d/10/ea/7d10ea497feb26b63d93a4f6467da98e.jpg"
-alt="Welcome Image" class="w-full h-auto" >
+    <img src="https://i.pinimg.com/originals/7d/10/ea/7d10ea497feb26b63d93a4f6467da98e.jpg" alt="Welcome Image" class="w-full h-auto">
     <h2 class="text-2xl font-bold mb-6 text-center">Register Your Account</h2>
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -23,10 +22,7 @@ alt="Welcome Image" class="w-full h-auto" >
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -35,9 +31,7 @@ alt="Welcome Image" class="w-full h-auto" >
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+            <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>

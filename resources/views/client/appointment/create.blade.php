@@ -20,36 +20,36 @@
                             @enderror
                         </div>
                         <div class="mb-4">
-                            <label for="text"  class="block text-gray-700 text-sm font-bold mb-2">Descriptions</label>
+                            <label for="text" class="block text-gray-700 text-sm font-bold mb-2">Descriptions</label>
                             <input type="text" name="descriptions" value="{{ old('descriptions') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </div>
                         <table class="table-auto w-full mb-6">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border px-4 py-2">Spare Part</th>
-                                <th class="border px-4 py-2">Quantity</th>
-                                <th class="border px-4 py-2">Total Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($carts as $cart)
-                            <tr>
-                                <td class="border px-4 py-2 text-center align-middle">
-                                    <a href="{{  route('sparepart.details', $cart->sparePart->spare_part_id)  }}">
-                                        {{ $cart->sparePart->name }}
-                                    </a>
-                                </td>
-                                <td class="border px-4 py-2 text-center align-middle">{{ $cart->quantity }}</td>
-                                <td class="border px-4 py-2 text-center align-middle">{{ $cart->sparePart->price * $cart->quantity  }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="border px-4 py-2">Spare Part</th>
+                                    <th class="border px-4 py-2">Quantity</th>
+                                    <th class="border px-4 py-2">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($carts as $cart)
+                                <tr>
+                                    <td class="border px-4 py-2 text-center align-middle">
+                                        <a href="{{  route('sparepart.details', $cart->sparePart->spare_part_id)  }}">
+                                            {{ $cart->sparePart->name }}
+                                        </a>
+                                    </td>
+                                    <td class="border px-4 py-2 text-center align-middle">{{ $cart->quantity }}</td>
+                                    <td class="border px-4 py-2 text-center align-middle">{{ $cart->sparePart->price * $cart->quantity  }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         <a href="{{ route('client.appointment.index') }}" class="btn btn-black mb-2" style="padding: 15px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Back</a>
-                        <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>   
+                        <button type="submit" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Submit</button>
                 </div>
                 </form>
-                
+
             </div>
         </div>
     </div>

@@ -12,17 +12,14 @@ class SparePartController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $perPage = $request->input('perPage', 5); 
-        
+        $perPage = $request->input('perPage', 5);
+
         $spareParts = SparePart::where(function ($query) use ($search) {
             $query->where('name', 'LIKE', "%$search%")
                 ->orWhere('description', 'LIKE', "%$search%");
-        })->paginate($perPage); 
+        })->paginate($perPage);
         return view('admin.spare_parts.index', compact('spareParts'));
     }
-    
-
-    
 
     public function homepage()
     {
@@ -41,7 +38,6 @@ class SparePartController extends Controller
         $sparePart = SparePart::findOrFail($id);
         $spareparts = SparePart::inRandomOrder()->limit(4)->get();
         return view('client.sparepart.details', compact('sparePart', 'spareparts'));
-    
     }
 
     public function detailsAdmin($id)
@@ -49,7 +45,6 @@ class SparePartController extends Controller
         $sparePart = SparePart::findOrFail($id);
         $spareparts = SparePart::inRandomOrder()->limit(4)->get();
         return view('admin.spare_parts.details', compact('sparePart', 'spareparts'));
-    
     }
 
     public function create()
@@ -143,5 +138,4 @@ class SparePartController extends Controller
         return redirect()->route('admin.spare_parts.index')
             ->with('success', 'Spare Part deleted successfully.');
     }
-    
 }

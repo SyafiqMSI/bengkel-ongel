@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\SparePart;
 
 class UserController extends Controller
 {
-    public function index(){
-        $spareParts = SparePart::all(); 
+    public function index()
+    {
+        $spareParts = SparePart::all();
         return view('welcome', compact('spareParts'));
     }
     public function createCart($id)

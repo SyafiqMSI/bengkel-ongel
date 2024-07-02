@@ -17,6 +17,9 @@
                         <a href="{{ route('admin.appointment.create') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Add Appointment</a>
                     </div>
 
+                    @if ($appointments->isEmpty())
+                    <p class="text-xl mb-4 px-2">Silahkan Buat Janji Terlebih Dahulu</p>
+                    @else
                     <div class="mb-18">
                         <table class="table-auto w-full mb-6 mt-6">
                             <thead>
@@ -64,6 +67,7 @@
                             </tbody>
                         </table>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

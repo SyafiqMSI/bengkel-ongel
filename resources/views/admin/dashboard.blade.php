@@ -7,13 +7,13 @@
 
     <div class="py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-4">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged as ")}}{{ Auth::user()->name }}!
                 </div>
             </div>
 
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-4">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-4">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <div class="mt-10 text-2xl">
                         Financial Overview
@@ -26,7 +26,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const financialChart = document.getElementById('financialChart').getContext('2d');
             const chart = new Chart(financialChart, {
                 type: 'bar',

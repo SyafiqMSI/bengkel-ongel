@@ -17,6 +17,9 @@
                         <a href="{{ route('admin.item_ordered.selectuser') }}" class="btn btn-black mb-2" style="padding: 12px 20px; background-color: #000; color: #fff; text-decoration: none; border-radius: 8px; font-weight: 600; transition: background-color 0.3s ease;">Add Items Ordered</a>
                     </div>
 
+                    @if ($itemsorder->isEmpty())
+                    <p class="text-xl mb-4 px-2">Silahkan Tambahkan Item Terlebih Dahulu</p>
+                    @else
                     <div class="mb-18">
                         <table class="table-auto w-full mb-6 mt-6">
                             <thead>
@@ -46,14 +49,14 @@
                                             </form>
                                         </div>
                                     </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                    </table>
+                    @endif
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </x-app-layout>

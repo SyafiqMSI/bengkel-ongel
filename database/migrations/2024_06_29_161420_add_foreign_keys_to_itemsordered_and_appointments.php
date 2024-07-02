@@ -30,13 +30,11 @@ return new class extends Migration
 
     public function down()
     {
-        // Drop foreign keys from itemsordered table
         Schema::table('items_ordereds', function (Blueprint $table) {
             $table->dropForeign(['appointment_id']);
             $table->dropForeign(['sparepart_id']);
         });
 
-        // Drop foreign keys from appointments table
         Schema::table('appointments', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });

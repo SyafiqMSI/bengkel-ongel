@@ -30,7 +30,7 @@ class AppointmentController extends Controller
         $users = User::all();
         return view('admin.appointment.create', compact('users'));
     }
-    
+
 
     public function store(Request $request)
     {
@@ -58,7 +58,7 @@ class AppointmentController extends Controller
     {
         $appointment = Appointment::findOrFail($id);
 
-  
+
         $appointment->update($request->all());
 
         return redirect()->route('admin.appointment.index')
@@ -67,23 +67,23 @@ class AppointmentController extends Controller
 
     public function done($id)
     {
- 
+
         $appointment = Appointment::findOrFail($id);
 
         $appointment->status = 'done';
- 
+
         $appointment->save();
- 
+
         $orderedItems = ItemsOrdered::where('appointment_id', $appointment->appointment_id)->get();
-    
+
         foreach ($orderedItems as $orderedItem) {
             $order = new Order();
             $order->spare_part_id = $orderedItem->spare_part_id;
-            $order->quantity = $orderedItem->amount; 
-            $order->amount = $orderedItem->sparePart->price * $orderedItem->amount; 
+            $order->quantity = $orderedItem->amount;
+            $order->amount = $orderedItem->sparePart->price * $orderedItem->amount;
             $order->save();
         }
-    
+
         return redirect()->route('client.appointment.index')
             ->with('success', 'Appointment updated successfully.');
     }

@@ -37,12 +37,14 @@ class ItemsOrderedController extends Controller
         return view('admin.item_ordered.view', compact('itemsOrder', 'user', 'sparePart'));
     }
 
-    public function selectUser() {
+    public function selectUser()
+    {
         $users = User::all();
         return view('admin.item_ordered.selectUser', compact('users'));
     }
 
-    public function spareparts() {
+    public function spareparts()
+    {
         $spareParts = SparePart::all();
         return view('admin.item_ordered.spareparts', compact('spareParts'));
     }
@@ -50,7 +52,7 @@ class ItemsOrderedController extends Controller
     public function create($id)
     {
         $appointments = Appointment::where('user_id', $id)->get();
-        $spareParts = SparePart::all(); 
+        $spareParts = SparePart::all();
         return view('admin.item_ordered.create', compact('appointments', 'spareParts', 'id'));
     }
 
@@ -60,7 +62,7 @@ class ItemsOrderedController extends Controller
         ItemsOrdered::create([
             'items_ordered_id' => $request->id_items_ordered,
             'appointment_id' => $request->appointment_id,
-            'spare_part_id' => $request->sparepart_id,
+            'spare_part_id' => $request->spare_part_id,
             'amount' => $request->amount,
         ]);
 

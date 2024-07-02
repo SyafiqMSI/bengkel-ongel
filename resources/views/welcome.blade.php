@@ -199,23 +199,23 @@
         </div>
 
         <div id="spareparts" class="flex" style="justify-content: center; margin: 0;">
-    @foreach ($spareParts as $sparePart)
-        @php
+            @foreach ($spareParts as $sparePart)
+            @php
             $routeName = Auth::check() && Auth::user()->isAdmin() ? 'admin.spare_parts.details' : 'sparepart.details';
-        @endphp
-        <a href="{{ route($routeName, $sparePart->spare_part_id) }}" class="card spare-part">
-            @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
+            @endphp
+            <a href="{{ route($routeName, $sparePart->spare_part_id) }}" class="card spare-part">
+                @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
                 <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" width="200" height="200">
-            @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
+                @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
                 <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" width="200" height="200">
-            @else
+                @else
                 <img src="https://via.placeholder.com/300" alt="Placeholder Image" width="200" height="200">
-            @endif
-            <h2>{{ $sparePart->name }}</h2>
-            <p>Rp {{ $sparePart->price }}</p>
-        </a>
-    @endforeach
-</div>
+                @endif
+                <h2>{{ $sparePart->name }}</h2>
+                <p>Rp {{ $sparePart->price }}</p>
+            </a>
+            @endforeach
+        </div>
 
 
     </div>
@@ -250,19 +250,19 @@
         }
 
         function smoothScroll(event) {
-        event.preventDefault();
-        const targetId = event.target.getAttribute('href').substring(1); 
-        const targetElement = document.getElementById(targetId);
-        const navbarHeight = document.querySelector('.header').offsetHeight; 
-        
-        if (targetElement) {
-            const targetPosition = targetElement.offsetTop - navbarHeight; 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            event.preventDefault();
+            const targetId = event.target.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            const navbarHeight = document.querySelector('.header').offsetHeight;
+
+            if (targetElement) {
+                const targetPosition = targetElement.offsetTop - navbarHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         }
-    }
     </script>
 </body>
 

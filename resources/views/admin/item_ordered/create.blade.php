@@ -35,16 +35,16 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="id_items_ordered" class="block text-gray-700 text-sm font-bold mb-2">Spare Part Ordered</label>
-                            <select id="id_items_ordered" name="id_items_ordered" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                                <option value="">Select Spare Parts</option>
+                            <label for="spare_part_id" class="block text-gray-700 text-sm font-bold mb-2">Spare Part Ordered</label>
+                            <select id="spare_part_id" name="spare_part_id" value="{{ old('spare_part_id') }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="spare_part_id">Select Spare Parts</option>
                                 @foreach($spareParts as $sparePart)
                                 <option value="{{ $sparePart->spare_part_id }}">
                                     {{ $sparePart->name }}
                                 </option>
                                 @endforeach
                             </select>
-                            @error('id_items_ordered')
+                            @error('spare_part_id')
                             <p class="text-red-500 text-xs italic">{{ $message }}</p>
                             @enderror
                         </div>

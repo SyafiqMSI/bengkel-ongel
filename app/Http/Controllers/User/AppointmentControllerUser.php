@@ -8,12 +8,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\ItemsOrdered;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AppointmentControllerUser extends Controller
 {
     public function index()
     {
-        $appointments = Appointment::all();
+        $userSessionId = Auth::user();
+        $appointments = Appointment::where('user_id', $userSessionId->id)->get();
+
         return view('client.appointment.index', compact('appointments'));
     }
 
@@ -54,7 +57,7 @@ class AppointmentControllerUser extends Controller
         ]);
 
         $cartItems = Cart::where('user_id', $request->user_id)->get();
-    
+
         foreach ($cartItems as $cartItem) {
             ItemsOrdered::create([
                 'appointment_id' => $appointment->appointment_id,
@@ -62,13 +65,12 @@ class AppointmentControllerUser extends Controller
                 'amount' => $cartItem->quantity,
             ]);
         }
-    
+
         Cart::where('user_id', $request->user_id)->delete();
-    
+
         return redirect()->route('client.appointment.index')
             ->with('success', 'Appointment created successfully.');
     }
-    
 
     public function edit($id)
     {
@@ -82,15 +84,12 @@ class AppointmentControllerUser extends Controller
             'appointment_id' => 'required',
             'date' => 'required|date',
         ]);
-    
-        // Find the appointment by ID
+
         $appointment = Appointment::findOrFail($request->appointment_id);
-    
-        // Update the appointment with new data
+
         $appointment->date = $request->date;
         $appointment->descriptions = $request->descriptions;
-    
-        // Save the updated appointment
+
         $appointment->save();
 
         return redirect()->route('client.appointment.index')
