@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
-use App\Models\Order;
 
 class CartController extends Controller
 {
@@ -24,26 +23,24 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request
         $request->validate([
             'spare_part_id' => 'required|exists:spare_parts,spare_part_id',
             'amount' => 'required|integer|min:1',
         ]);
-    
+
         $sparePartId = $request->input('spare_part_id');
         $amount = $request->input('amount');
         $sparePart = SparePart::findOrFail($sparePartId);
-    
-        // Check if the stock is sufficient
+
         if ($sparePart->stock < $amount) {
             return redirect()->back()->with('error', 'Not enough stock available')->withInput();
         }
-    
+
         $userId = auth()->user()->id;
         $cartItem = Cart::where('user_id', $userId)
-                        ->where('spare_part_id', $sparePartId)
-                        ->first();
-    
+            ->where('spare_part_id', $sparePartId)
+            ->first();
+
         if ($cartItem) {
             $cartItem->quantity += $amount;
             $cartItem->save();
@@ -54,13 +51,11 @@ class CartController extends Controller
             $cartItem->quantity = $amount;
             $cartItem->save();
         }
-    
-        // Decrease the stock
+
         $sparePart->decrement('stock', $amount);
-    
+
         return redirect()->route('cart.index')->with('success', 'Item added to cart successfully!');
     }
-    
 
     public function update(Request $request, $id)
     {
