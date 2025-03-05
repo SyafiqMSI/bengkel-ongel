@@ -199,25 +199,27 @@
         </div>
 
         <div id="spareparts" class="flex" style="justify-content: center; margin: 0;">
-            @foreach ($spareParts as $sparePart)
-            @php
-            $routeName = Auth::check() && Auth::user()->isAdmin() ? 'admin.spare_parts.details' : 'sparepart.details';
-            @endphp
-            <a href="{{ route($routeName, $sparePart->spare_part_id) }}" class="card spare-part">
-                @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
-                <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" width="200" height="200">
-                @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
-                <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" width="200" height="200">
-                @else
-                <img src="https://via.placeholder.com/300" alt="Placeholder Image" width="200" height="200">
-                @endif
-                <h2>{{ $sparePart->name }}</h2>
-                <p>Rp {{ $sparePart->price }}</p>
-            </a>
-            @endforeach
+            @if(isset($spareParts) && count($spareParts) > 0)
+                @foreach ($spareParts as $sparePart)
+                @php
+                $routeName = Auth::check() && Auth::user()->isAdmin() ? 'admin.spare_parts.details' : 'sparepart.details';
+                @endphp
+                <a href="{{ route($routeName, $sparePart->spare_part_id) }}" class="card spare-part">
+                    @if ($sparePart->picture && file_exists(public_path('storage/spare_parts/' . $sparePart->picture)))
+                    <img src="{{ asset('storage/spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" width="200" height="200">
+                    @elseif ($sparePart->picture && file_exists(public_path('spare_parts/' . $sparePart->picture)))
+                    <img src="{{ asset('spare_parts/' . $sparePart->picture) }}" alt="Spare Part Image" width="200" height="200">
+                    @else
+                    <img src="https://via.placeholder.com/300" alt="Placeholder Image" width="200" height="200">
+                    @endif
+                    <h2>{{ $sparePart->name }}</h2>
+                    <p>Rp {{ $sparePart->price }}</p>
+                </a>
+                @endforeach
+            @else
+                <p>No spare parts available.</p>
+            @endif
         </div>
-
-
     </div>
 
     <footer style="width: 100%; text-align: center; color: #000; padding: 10px 0;">
