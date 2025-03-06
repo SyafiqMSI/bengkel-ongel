@@ -13,8 +13,7 @@
         { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "public": true,
-    "buildCommand": "composer install --no-dev --optimize-autoloader && npm ci && vite build",
-    "outputDirectory": "public",
+    "buildCommand": "php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\" && php composer-setup.php && php composer.phar install --no-dev --optimize-autoloader && npm ci && npm run build",    "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
